@@ -1,8 +1,9 @@
 # Initialize
-    scoreboard objectives add display dummy "Eaten Mobs"
+    scoreboard objectives add display dummy "§l§g[ ABILITIES ]§r"
     scoreboard objectives add v-on_entry dummy
     scoreboard objectives add v-per_second dummy
 
+    scoreboard objectives add v-bee dummy
     scoreboard objectives add v-chicken dummy
     scoreboard objectives add v-cow dummy
     scoreboard objectives add v-pig dummy

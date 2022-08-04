@@ -1,6 +1,7 @@
 {
   "resource_pack_name": "rebo",
   "texture_data": {
+    "bee": { "textures": "textures/items/bee" },
     "chicken": { "textures": "textures/items/chicken" },
     "cow": { "textures": "textures/items/cow" },
     "pig": { "textures": "textures/items/pig" },

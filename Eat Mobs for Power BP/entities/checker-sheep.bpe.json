@@ -29,10 +29,6 @@
 		"components": {
 			"minecraft:projectile": {
 				"on_hit": {
-					"impact_damage": {
-						"damage": 0,
-						"knockback": false
-					},
 					"stick_in_ground": {
 						"shake_time": 0
 					},

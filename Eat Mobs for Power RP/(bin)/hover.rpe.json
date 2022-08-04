@@ -1,0 +1,15 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "rebo:hover",
+        "scripts": {
+            "initialize": [
+                "v.particle_random_1 = 0.0;",
+                "v.particle_random_2 = 0.0;"
+            ]
+        }
+      }
+    }
+  }
+  

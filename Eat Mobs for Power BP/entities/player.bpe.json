@@ -7,6 +7,7 @@
       "is_summonable": false,
       "is_experimental": false,
       "animations": {
+        "bee": "controller.animation.player.bee",
         "chicken": "controller.animation.player.chicken",
         "cow": "controller.animation.player.cow",
         "pig": "controller.animation.player.pig",
@@ -14,6 +15,7 @@
       },
       "scripts": {
         "animate": [
+          "bee",
           "chicken",
           "cow",
           "pig",
@@ -48,9 +50,18 @@
 				}
 			},
 
-
-      "cg:heal": {
+      "cg:effects-slow_falling": { 
         "minecraft:spell_effects": {
+          "remove_effects": ["slow_falling"],
+          "add_effects": [
+            {"effect": "slow_falling", "duration": 0.9, "amplifier": 2, "visible": false}
+          ]
+        }
+      },
+
+      "cg:effects-regeneration": {
+        "minecraft:spell_effects": {
+          "remove_effects": ["slow_falling"],
           "add_effects": [
             {"effect": "regeneration", "duration": 0.05, "amplifier": 255, "visible": false}
           ]
@@ -226,7 +237,8 @@
 			"e:spawn-checker_sheep": { "add": { "component_groups": [ "cg:spawn-checker_sheep" ] } },
 			"e:spawn-egg": { "add": { "component_groups": [ "cg:spawn-egg" ] } },
 
-			"e:heal": { "add": { "component_groups": [ "cg:heal" ] } },
+			"e:effects-regeneration": { "add": { "component_groups": [ "cg:effects-regeneration" ] } },
+			"e:effects-slow_falling": { "add": { "component_groups": [ "cg:effects-slow_falling" ] } },
       
 
       "minecraft:gain_bad_omen": {

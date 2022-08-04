@@ -1,6 +1,7 @@
 pack.name=Eat Mobs For Power RP
 pack.description=by ReBo
 
+item.rebo:bee.name=Edible Bee
 item.rebo:chicken.name=Edible Chicken
 item.rebo:cow.name=Edible Cow
 item.rebo:pig.name=Edible Pig

@@ -1,0 +1,12 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:item": {
+        "description": {
+            "identifier": "rebo:bee",
+            "category": "Nature"
+        },
+        "components": {
+            "minecraft:icon": "bee"
+        }
+    }
+}

@@ -1,1 +1,2 @@
-scoreboard players add @s v-pig 60
+effect @s speed 3 3 false
+playsound mob.pig.boost @s ^^^1

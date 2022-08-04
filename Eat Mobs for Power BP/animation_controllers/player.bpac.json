@@ -1,0 +1,97 @@
+{
+  "format_version": "1.18.0",
+  "animation_controllers" : {
+    "controller.animation.player.chicken" : {
+      "initial_state" : "default",
+      "states" : {
+        "default" : {
+            "transitions" : [
+              { "on_eat" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:chicken') && q.main_hand_item_use_duration == 1" },
+              { "on_ability" : "v.attack_time != 0" }
+          ]
+        },
+        "on_eat" : {
+          "on_entry": ["/function rebo/chicken/on_eat"],
+          "transitions" : [
+            {"default": "(1.0)"}
+          ]
+        },
+        "on_ability" : {
+          "on_entry": ["/execute @s[scores={v-chicken=0..}] ~~~ function rebo/chicken/on_ability"],
+          "transitions" : [
+            {"default": "v.attack_time == 0"}
+          ]
+        }
+      }
+    },
+    "controller.animation.player.cow" : {
+      "initial_state" : "default",
+      "states" : {
+        "default" : {
+            "transitions" : [
+              { "on_eat" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:cow') && q.main_hand_item_use_duration == 1" },
+              { "on_ability" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:bucket') && v.attack_time != 0.0" }
+          ]
+        },
+        "on_eat" : {
+          "on_entry": ["/function rebo/cow/on_eat"],
+          "transitions" : [
+            {"default": "(1.0)"}
+          ]
+        },
+        "on_ability" : {
+          "on_entry": ["/execute @s[scores={v-cow=0..}] ~~~ function rebo/cow/on_ability"],
+          "transitions" : [
+            {"default": "v.attack_time == 0.0"}
+          ]
+        }
+      }
+    },
+    "controller.animation.player.pig" : {
+      "initial_state" : "default",
+      "states" : {
+        "default" : {
+            "transitions" : [
+              { "on_eat" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:pig') && q.main_hand_item_use_duration == 1" },
+              { "on_ability" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:carrot') && q.main_hand_item_use_duration == 1" }
+          ]
+        },
+        "on_eat" : {
+          "on_entry": ["/function rebo/pig/on_eat"],
+          "transitions" : [
+            {"default": "(1.0)"}
+          ]
+        },
+        "on_ability" : {
+          "on_entry": ["/execute @s[scores={v-pig=0..}] ~~~ function rebo/pig/on_ability"],
+          "transitions" : [
+            {"default": "(1.0)"}
+          ]
+        }
+      }
+    },
+    "controller.animation.player.sheep" : {
+      "initial_state" : "default",
+      "states" : {
+        "default" : {
+            "transitions" : [
+              { "on_eat" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:sheep') && q.main_hand_item_use_duration == 1" },
+              { "on_ability" : "(v.attack_time != 0 ) && (q.health < q.max_health)" }
+          ]
+        },
+        "on_eat" : {
+          "on_entry": ["/function rebo/sheep/on_eat"],
+          "transitions" : [
+            {"default": "(1.0)"}
+          ]
+        },
+        "on_ability" : {
+          "on_entry": ["/execute @s[scores={v-sheep=0..}] ~~~ function rebo/sheep/on_ability"],
+          "transitions" : [
+            {"default": "v.attack_time == 0"}
+          ]
+        }
+      }
+    }
+  }
+}

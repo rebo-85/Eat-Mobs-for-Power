@@ -1,0 +1,77 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.modified_pig",
+				"texture_width": 64,
+				"texture_height": 32,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "main",
+					"pivot": [0, 0, 0],
+					"binding": "q.item_slot_to_bone_name(c.item_slot)"
+				},
+				{
+					"name": "not_head",
+					"parent": "main",
+					"pivot": [0, -2, -6],
+					"cubes": [
+						{"origin": [-4, -6, -14], "size": [8, 8, 8], "uv": [0, 0]},
+						{"origin": [-2, -5, -15], "size": [4, 3, 1], "uv": [16, 16]}
+					],
+					"locators": {
+						"lead": [0, 0, -6]
+					}
+				},
+				{
+					"name": "leg0",
+					"parent": "main",
+					"pivot": [-3, -8, 7],
+					"cubes": [
+						{"origin": [-5, -14, 5], "size": [4, 6, 4], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "leg1",
+					"parent": "main",
+					"pivot": [3, -8, 7],
+					"mirror": true,
+					"cubes": [
+						{"origin": [1, -14, 5], "size": [4, 6, 4], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "leg2",
+					"parent": "main",
+					"pivot": [-3, -8, -5],
+					"cubes": [
+						{"origin": [-5, -14, -7], "size": [4, 6, 4], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "leg3",
+					"parent": "main",
+					"pivot": [3, -8, -5],
+					"mirror": true,
+					"cubes": [
+						{"origin": [1, -14, -7], "size": [4, 6, 4], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "body2",
+					"parent": "main",
+					"pivot": [0, -4, -1],
+					"rotation": [90, 0, 0],
+					"cubes": [
+						{"origin": [-5, -13, -5], "size": [10, 16, 8], "uv": [28, 8]}
+					]
+				}
+			]
+		}
+	]
+}

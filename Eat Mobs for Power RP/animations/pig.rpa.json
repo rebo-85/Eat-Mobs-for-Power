@@ -1,0 +1,35 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.pig.wield.third_person": {
+			"loop": true,
+			"bones": {
+				"main": {
+					"position": [0, 21, 0]
+				}
+			}
+		},
+		"animation.pig.wield.first_person": {
+			"loop": true,
+			"bones": {
+				"main": {
+					"rotation": [15.93348, -17.91379, -124.15053],
+					"position": [-5, 18, 0]
+				}
+			}
+		},
+		"animation.pig.eat.first_person": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"main": {
+					"rotation": [15.93348, -17.91379, -124.15053],
+					"position": {
+						"0.0": [-3, 22, -5],
+						"0.25": [2, 26, -5]
+					}
+				}
+			}
+		}
+	}
+}

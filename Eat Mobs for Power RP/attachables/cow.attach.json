@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "rebo:cow",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "textures/entity/cow/cow"
+      },
+      "geometry": {
+        "default": "geometry.modified_cow"
+      },
+      "render_controllers": [ "controller.render.default" ],
+      "animations": {
+        "wield.third_person": "animation.cow.wield.third_person",
+        "wield.first_person": "animation.cow.wield.first_person",
+        "eat.first_person": "animation.cow.eat.first_person"
+      },
+      "scripts": {
+        "animate": [
+            {"wield.third_person": "!c.is_first_person"},
+            {"wield.first_person": "c.is_first_person && !q.is_using_item"},
+            {"eat.first_person": "c.is_first_person && q.is_using_item"}
+        ]
+      }
+    }
+  }
+}

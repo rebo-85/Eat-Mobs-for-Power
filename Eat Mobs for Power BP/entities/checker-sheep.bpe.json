@@ -1,0 +1,93 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "rebo:checker_sheep",
+			"runtime_identifier": "minecraft:snowball",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"animations": {
+				"on_hit": "controller.animation.checker.on_hit"
+			},
+			"scripts": {
+				"animate": [ "on_hit" ]
+			}
+		},
+		"component_groups": {
+			"cg:instant_despawn": {
+				"minecraft:instant_despawn": {
+					"remove_child_entities": true
+				}
+			},
+			"cg:hit": { "minecraft:is_ignited": {} }
+		},
+		"events": {
+			"e:instant_despawn": { "add": { "component_groups": [ "cg:instant_despawn" ] } },
+			"e:hit": { "add": { "component_groups": [ "cg:hit" ] } }
+		},
+		"components": {
+			"minecraft:projectile": {
+				"on_hit": {
+					"impact_damage": {
+						"damage": 0,
+						"knockback": false
+					},
+					"stick_in_ground": {
+						"shake_time": 0
+					},
+					"definition_event": {
+						"affect_projectile": true,
+						"event_trigger": {
+							"event": "e:hit"
+						}
+					}
+				},
+				"angle_offset": 0,
+				"power": 100,
+				"anchor": 1,
+				"liquid_inertia": 1,
+				"inertia": 1,
+				"gravity": 0,
+				"offset": [
+					0,
+					0,
+					0
+				]
+			},
+			"minecraft:type_family": {
+				"family": [
+					"rebo",
+					"checker-sheep",
+					"inanimate"
+				]
+			},
+			"minecraft:collision_box": {
+				"height": 0.01,
+				"width": 0.01
+			},
+			"minecraft:scale": {
+				"value": 1
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "all",
+						"deals_damage": false
+					}
+				]
+			},
+			"minecraft:physics": {
+				"has_gravity": false,
+				"has_collision": false
+			},
+			"minecraft:pushable": {
+				"is_pushable": false
+			},
+			"minecraft:push_through": {
+				"value": 1
+			},
+			"minecraft:conditional_bandwidth_optimization": {}
+		}
+	}
+}

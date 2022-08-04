@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "rebo:sheep",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "textures/entity/sheep/modified_sheep"
+      },
+      "geometry": {
+        "default": "geometry.modified_sheep"
+      },
+      "render_controllers": [ "controller.render.default" ],
+      "animations": {
+        "wield.third_person": "animation.sheep.wield.third_person",
+        "wield.first_person": "animation.sheep.wield.first_person",
+        "eat.first_person": "animation.sheep.eat.first_person"
+      },
+      "scripts": {
+        "animate": [
+            {"wield.third_person": "!c.is_first_person"},
+            {"wield.first_person": "c.is_first_person && !q.is_using_item"},
+            {"eat.first_person": "c.is_first_person && q.is_using_item"}
+        ]
+      }
+    }
+  }
+}

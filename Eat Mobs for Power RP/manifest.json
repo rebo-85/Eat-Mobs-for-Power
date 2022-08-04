@@ -1,0 +1,21 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "pack.name",
+		"description": "pack.description",
+		"uuid": "720ef53a-6abf-4207-bd7c-860a55170ddc",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 18, 0]
+	},
+	"metadata": {
+		"authors": ["ReBo"]
+	},
+	"modules": [
+		{
+			"description": "pack.description",
+			"type": "resources",
+			"uuid": "1602a03d-7624-45e4-ae33-d24587418d6e",
+			"version": [1, 0, 0]
+		}
+	]
+}

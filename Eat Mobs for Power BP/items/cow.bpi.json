@@ -1,0 +1,16 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:item": {
+        "description": {
+            "identifier": "rebo:cow",
+            "category": "Nature"
+        },
+        "components": {
+            "minecraft:food": {
+                "can_always_eat": true
+            },
+            "minecraft:max_stack_size": 64,
+            "minecraft:use_duration": 32
+        }
+    }
+}

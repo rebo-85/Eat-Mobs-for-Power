@@ -1,0 +1,140 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.parrot.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						"a.parrot.armor_setup",
+						"ac.parrot.move",
+						"ac.parrot.setup",
+						"ac.parrot.sound.root",
+						{ "a.parrot.riding" : "q.is_riding" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.parrot.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.parrot.sound.hurt",
+						"ac.parrot.sound.death",
+						{ "a.parrot.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.parrot.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.parrot.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.parrot.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.parrot.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.parrot.move" : {
+			"initial_state" : "dancing",
+			"states" : {
+				"dancing" : {
+					"animations" : [ "a.parrot.dance" ],
+					"transitions" : [
+						{
+							"flying" : "variable.state == 0"
+						},
+						{
+							"standing" : "variable.state == 1"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						}
+					]
+				},
+				"flying" : {
+					"animations" : [ "a.parrot.moving" ],
+					"transitions" : [
+						{
+							"standing" : "variable.state == 1"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						},
+						{
+							"dancing" : "variable.state == 3"
+						}
+					]
+				},
+				"sitting" : {
+					"animations" : [ "a.parrot.sitting" ],
+					"transitions" : [
+						{
+							"flying" : "variable.state == 0"
+						},
+						{
+							"standing" : "variable.state == 1"
+						},
+						{
+							"dancing" : "variable.state == 3"
+						}
+					]
+				},
+				"standing" : {
+					"animations" : [ "a.parrot.standing", "a.parrot.flying" ],
+					"transitions" : [
+						{
+							"flying" : "variable.state == 0"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						},
+						{
+							"dancing" : "variable.state == 3"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.parrot.setup" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations" : [ "a.parrot.look_at_target", "a.parrot.base" ]
+				}
+			}
+		}
+	}
+}

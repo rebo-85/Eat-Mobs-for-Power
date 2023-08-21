@@ -1,0 +1,149 @@
+{
+	"format_version" : "1.8.0",
+  "animations": {
+		"animation.player.strider.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.strider.hurt"
+				}
+			}
+		},
+		"animation.player.strider.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.strider.death"
+				}
+			}
+		},
+		"animation.player.strider.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.strider.ambient"
+				}
+			}
+		},
+   		"animation.player.strider.look_at_target" : {
+			"loop" : true,
+			"bones" : {
+				"strider_body" : {
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+          		"position":[ 0, -2.9, 0 ],
+					"rotation" : [ "q.target_x_rotation - this", "q.target_y_rotation - this", 0.0 ]
+				}
+			}
+		},
+		"animation.player.strider.sleeping" : {
+			"loop" : true,
+			"override_previous_animation" : true,
+			"bones" : {
+				
+				"strider_root" : {
+					"position" : [ "24.0 * math.cos(query.body_y_rotation) * math.cos(query.sleep_rotation) - 24.0 * math.sin(query.body_y_rotation) * math.sin(query.sleep_rotation)", 0.0, "24.0 * math.cos(query.body_y_rotation) * math.sin(query.sleep_rotation) + 24.0 * math.sin(query.body_y_rotation) * math.cos(query.sleep_rotation)" ],
+					"rotation" : [ -90.0, "270.0 - query.sleep_rotation - query.body_y_rotation", 0.0 ]
+				}
+			}
+		},
+		"animation.player.strider.walk": {
+			"loop": true,
+			"bones": {
+				"right_leg": {
+					"rotation": ["Math.sin(q.modified_distance_moved * v.speed * 0.5 + 180) * 114.592 * v.animation_speed", 0, "10 * Math.cos(q.modified_distance_moved * v.speed * 0.5f + 180) * v.animation_speed"],
+					"position": [0, "-2 * Math.sin(q.modified_distance_moved * v.speed * 0.5) * 2 * v.animation_speed", 0]
+				},
+				"left_leg": {
+					"rotation": ["Math.sin(q.modified_distance_moved * v.speed * 0.5) * 114.592 * v.animation_speed", 0, "10 * Math.cos(q.modified_distance_moved * v.speed * 0.5f) * v.animation_speed"],
+					"position": [0, "-2 * Math.sin(q.modified_distance_moved * v.speed * 0.5 + 180) * 2 * v.animation_speed", 0]
+				},
+				"strider_body": {
+					"rotation": [0, 0, "5.72958 * Math.sin(q.modified_distance_moved * v.speed) * 4 * v.animation_speed"],
+					"position": [0, "-2 * Math.cos(q.modified_distance_moved * v.speed) * 2 * v.animation_speed", 0]
+				},
+				"bristle1": {
+					"rotation": [0, 0, "v.bristle_flow * 74.4845"]
+				},
+				"bristle2": {
+					"rotation": [0, 0, "v.bristle_flow * 68.7549"]
+				},
+				"bristle3": {
+					"rotation": [0, 0, "v.bristle_flow * 34.3775"]
+				},
+				"bristle4": {
+					"rotation": [0, 0, "v.bristle_flow * 68.7549"]
+				},
+				"bristle5": {
+					"rotation": [0, 0, "v.bristle_flow * 74.4845"]
+				}
+			}
+		},
+		"animation.player.strider.bristle_flow": {
+			"loop": true,
+			"bones": {
+				"bristle0": {
+					"rotation": [0, 0, "2.864789 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * -22.9183)"]
+				},
+				"bristle1": {
+					"rotation": [0, 0, "5.72958 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * 11.4592)"]
+				},
+				"bristle2": {
+					"rotation": [0, 0, "5.72958 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * 22.9183)"]
+				},
+				"bristle3": {
+					"rotation": [0, 0, "5.72958 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * 22.9183)"]
+				},
+				"bristle4": {
+					"rotation": [0, 0, "5.72958 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * 11.4592)"]
+				},
+				"bristle5": {
+					"rotation": [0, 0, "2.864789 * v.bristle_range_mod * Math.sin(q.life_time * 20 * v.bristle_speed_mod * -22.9183)"]
+				}
+			}
+		},
+		"animation.player.strider.armor_setup": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, "5.72958 * Math.sin(q.modified_distance_moved * v.speed) * 4 * v.animation_speed"],
+					"position": [0, "-2 * Math.cos(q.modified_distance_moved * v.speed) * 2 * v.animation_speed", 0],
+					"scale":1.9
+				},
+				"head4" : {
+					"position": [ 0, -1100, 0 ],
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+					"rotation" : [ "query.target_x_rotation - this", "query.target_y_rotation - this", 0.0 ]
+				},
+				"body": {
+					"position": [ 0, 0, 0 ],
+					"scale": 0.01
+				},
+				"leftarm": {
+					"position": [ 1000, -800, 200 ]
+				},
+				"rightarm": {
+					"position": [ -1000, -800, 200 ]
+				},
+				"leftitem": {
+					"scale": 100
+				},
+				"rightitem": {
+					"scale": 100
+				},
+				"leftleg": {
+					"scale": 0.0
+				},
+				"rightleg": {
+					"scale": 0.0
+				}
+			}
+		}
+  	}
+}

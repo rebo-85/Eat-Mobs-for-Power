@@ -1,0 +1,32 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.player.skeleton.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.skeleton.hurt"
+				}
+			}
+		},
+		"animation.player.skeleton.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.skeleton.death"
+				}
+			}
+		},
+		"animation.player.skeleton.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.skeleton.ambient"
+				}
+			}
+		}
+	}
+}

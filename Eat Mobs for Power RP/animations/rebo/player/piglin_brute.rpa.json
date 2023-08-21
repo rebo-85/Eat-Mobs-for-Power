@@ -1,0 +1,32 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.player.piglin_brute.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.piglin_brute.hurt"
+				}
+			}
+		},
+		"animation.player.piglin_brute.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.piglin_brute.death"
+				}
+			}
+		},
+		"animation.player.piglin_brute.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.piglin_brute.ambient"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.ghast.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						"a.ghast.armor_setup",
+						"a.ghast.move",
+						"a.ghast.scale",
+						"ac.ghast.sound.shoot",
+						"ac.ghast.sound.root"
+					]
+				}
+			}
+		},
+		"controller.animation.player.ghast.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.ghast.sound.hurt",
+						"ac.ghast.sound.death",
+						{ "a.ghast.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.ghast.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.ghast.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.ghast.sound.shoot" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.ischarging = 0.0;"
+					],
+					"transitions": [
+						{ "shoot": "q.is_sneaking && v.attack_time > 0"}
+					]
+				},
+				"shoot": {
+					"animations": [
+						"a.ghast.sound.shoot"
+					],
+					"on_entry": [
+						"v.ischarging = 1.0;",
+						"v.charging_start = q.life_time;"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.ghast.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.ghast.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

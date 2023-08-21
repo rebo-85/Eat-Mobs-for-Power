@@ -1,0 +1,138 @@
+{
+	"format_version" : "1.8.0",
+	"animations": {
+		"animation.player.chicken.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.chicken.hurt"
+				}
+			}
+		},
+		"animation.player.chicken.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.chicken.death"
+				}
+			}
+		},
+		"animation.player.chicken.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.chicken.ambient"
+				}
+			}
+		},
+		"animation.player.chicken.armor_setup" : {
+			"loop": true,
+			"bones": {
+				"body": {
+					"position": [ 0, -16, -3 ],
+					"rotation": [ 90, 0, 0 ],
+					"scale": [ 0.8, 0.6, 1.3 ]
+				},
+				"head": {
+					"position": [ 0, 3, 2 ],
+					"scale": [ 0.7, 0.7, 0.7 ]
+				},
+				"leftarm": {
+					"position": [ 3, 0, 2 ],
+					"rotation": [ -90, 0, 0 ],
+					"scale": [ "(1.0/this) * 0.01", "(1.0/this) * 0.01", "(1.0/this) * 0.01" ]
+				},
+				"rightarm": {
+					"position": [ -3, 0, 2 ],
+					"rotation": [ -90, 0, 0 ],
+					"scale": [ "(1.0/this) * 0.01", "(1.0/this) * 0.01", "(1.0/this) * 0.01" ]
+				},
+				"leftitem": {
+					"scale": [ "this / 0.01", "this / 0.01", "this / 0.01" ]
+				},
+				"rightitem": {
+					"scale": [ "this / 0.01", "this / 0.01", "this / 0.01" ]
+				},
+				"leftleg": {
+					"scale": 0.0
+				},
+				"rightleg": {
+					"scale": 0.0
+				}
+			}
+		},
+		"animation.player.chicken.riding" : {
+			"loop" : true,
+			"bones" : {
+				"chicken_root" : {
+					"position" : [ 0.0, "10.0 + q.is_ignited * 6.0", 0.0 ]
+				},
+				"root" : {
+					"position" : [ 0.0, "10.0 + q.is_ignited * 6.0", 0.0 ]
+				}
+			}
+		},
+		"animation.player.chicken.look_at_target" : {
+				"loop" : true,
+				"bones" : {
+					"chicken_head" : {
+						"relative_to" : {
+							"rotation" : "entity"
+						},
+						"rotation" : [ "q.target_x_rotation - this", "q.target_y_rotation - this", 0.0 ]
+					}
+				}
+		},
+		"animation.player.chicken.general.v1.0": {
+		"loop": true,
+		"bones": {
+			"chicken_body": {
+			"rotation": [ "0.0 - this", 0.0, 0.0 ]
+			},
+			"wing0": {
+			"rotation": [ 0.0, 0.0, "variable.chicken_wing_flap - this" ]
+			},
+			"wing1": {
+			"rotation": [ 0.0, 0.0, "-variable.chicken_wing_flap - this" ]
+			}
+		}
+		},
+		"animation.player.chicken.baby_transform": {
+		"loop": true,
+		"bones": {
+			"chicken_head": {
+			"scale": 2.0
+			}
+		}
+		},
+		"animation.player.chicken.general": {
+		"loop": true,
+		"bones": {
+			"chicken_body": {
+			"rotation": [ "-this", 0.0, 0.0 ]
+			},
+			"wing0": {
+			"rotation": [ 0.0, 0.0, "variable.chicken_wing_flap - this" ]
+			},
+			"wing1": {
+			"rotation": [ 0.0, 0.0, "-variable.chicken_wing_flap - this" ]
+			}
+		}
+		},
+		"animation.player.chicken.move": {
+			"anim_time_update": "v.modified_distance_moved",
+			"loop": true,
+			"bones": {
+				"leg0": {
+				"rotation": [ "math.cos(q.anim_time * 38.17) *  80.0", 0.0, 0.0 ]
+				},
+				"leg1": {
+				"rotation": [ "math.cos(q.anim_time * 38.17) * -80.0", 0.0, 0.0 ]
+				}
+			}
+		}
+  	}
+}

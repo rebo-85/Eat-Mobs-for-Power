@@ -1,0 +1,107 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.player.axolotl",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 1.25,
+				"visible_bounds_offset": [0, 0.625, 0]
+			},
+			"bones": [
+				{
+					"name": "axolotl_root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "axolotl_body",
+					"parent": "axolotl_root",
+					"pivot": [0, 3, 4],
+					"cubes": [
+						{"origin": [-4, 0, -5], "size": [8, 4, 10], "uv": [0, 11]},
+						{"origin": [0, 0, -5], "size": [0, 5, 9], "uv": [2, 17]}
+					]
+				},
+				{
+					"name": "right_arm",
+					"parent": "axolotl_body",
+					"pivot": [-4, 1, -4],
+					"rotation": [0, -90, 0],
+					"cubes": [
+						{"origin": [-6, -4, -4], "size": [3, 5, 0], "uv": [2, 13]}
+					]
+				},
+				{
+					"name": "right_leg",
+					"parent": "axolotl_body",
+					"pivot": [-4, 1, 4],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{"origin": [-5, -4, 4], "size": [3, 5, 0], "uv": [2, 13]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"parent": "axolotl_body",
+					"pivot": [4, 1, -4],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{"origin": [3, -4, -4], "size": [3, 5, 0], "uv": [2, 13]}
+					]
+				},
+				{
+					"name": "left_leg",
+					"parent": "axolotl_body",
+					"pivot": [4, 1, 4],
+					"rotation": [0, -90, 0],
+					"cubes": [
+						{"origin": [2, -4, 4], "size": [3, 5, 0], "uv": [2, 13]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "axolotl_body",
+					"pivot": [0, 2, 4],
+					"cubes": [
+						{"origin": [0, 0, 4], "size": [0, 5, 12], "uv": [2, 19]}
+					]
+				},
+				{
+					"name": "axolotl_head",
+					"parent": "axolotl_body",
+					"pivot": [0, 2, -5],
+					"reset": true,
+					"cubes": [
+						{"origin": [-4, 0, -10], "size": [8, 5, 5], "uv": [0, 1]}
+					]
+				},
+				{
+					"name": "left_gills",
+					"parent": "axolotl_head",
+					"pivot": [4, 2, -6],
+					"cubes": [
+						{"origin": [4, 0, -6], "size": [3, 7, 0], "uv": [11, 40]}
+					]
+				},
+				{
+					"name": "right_gills",
+					"parent": "axolotl_head",
+					"pivot": [-4, 2, -6],
+					"cubes": [
+						{"origin": [-7, 0, -6], "size": [3, 7, 0], "uv": [0, 40]}
+					]
+				},
+				{
+					"name": "top_gills",
+					"parent": "axolotl_head",
+					"pivot": [0, 5, -6],
+					"cubes": [
+						{"origin": [-4, 5, -6], "size": [8, 3, 0], "uv": [3, 37]}
+					]
+				}
+			]
+		}
+	]
+}

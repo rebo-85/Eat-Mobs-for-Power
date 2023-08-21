@@ -1,125 +1,350 @@
 {
   "format_version": "1.18.0",
-  "animation_controllers" : {
-    "controller.animation.player.bee" : {
-      "initial_state" : "default",
-      "states" : {
-        "default" : {
-            "transitions" : [
-              { "on_consume" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:bee') && q.main_hand_item_use_duration == 1" },
-              { "on_jump" : "q.is_jumping" }
-          ]
+  "animation_controllers": {
+    "controller.animation.player.jump": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [{ "jumping": "q.is_jumping" }]
         },
-        "on_consume" : {
-          "on_entry": ["/function rebo/bee/on_consume"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
-        },
-        "on_jump" : {
-          "on_entry": ["/execute @s[scores={v-bee=0..}] ~~~ function rebo/bee/on_jump"],
-          "transitions" : [
-            {"default": "!q.is_jumping"}
-          ]
+        "jumping": {
+          "on_entry": ["/function rebo/player/jump/on_entry"],
+          "transitions": [{ "default": "!q.is_jumping" }]
         }
       }
     },
-    "controller.animation.player.chicken" : {
-      "initial_state" : "default",
-      "states" : {
-        "default" : {
-            "transitions" : [
-              { "on_consume" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:chicken') && q.main_hand_item_use_duration == 1" },
-              { "on_attack" : "v.attack_time != 0" }
+    "controller.animation.player.item.bee": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "on_equip": "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:bee')"
+            }
           ]
         },
-        "on_consume" : {
-          "on_entry": ["/function rebo/chicken/on_consume"],
-          "transitions" : [
-            {"default": "(1.0)"}
+        "on_equip": {
+          "on_entry": ["/function rebo/player/bee/on_equip"],
+          "transitions": [{ "c_idle": "!q.is_using_item" }]
+        },
+        "on_unequip": {
+          "on_entry": ["/function rebo/player/bee/on_unequip"],
+          "transitions": [{ "default": "return true;" }]
+        },
+        "c_idle": {
+          "transitions": [
+            {
+              "on_unequip": "!q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:bee')"
+            },
+            { "lc_down": "v.attack_time > 0.0" },
+            { "rc_down": "q.main_hand_item_use_duration > 0" }
           ]
         },
-        "on_attack" : {
-          "on_entry": ["/execute @s[scores={v-chicken=0..}] ~~~ function rebo/chicken/on_attack"],
-          "transitions" : [
-            {"default": "v.attack_time == 0"}
+        "lc_down": {
+          "on_entry": ["/function rebo/player/bee/lc_down"],
+          "transitions": [{ "c_idle": "v.attack_time == 0.0" }]
+        },
+        "rc_down": {
+          "on_entry": ["/function rebo/player/bee/rc_down"],
+          "transitions": [
+            { "rc_hold": "q.is_using_item" },
+            { "rc_up": "!q.is_using_item" }
           ]
+        },
+        "rc_hold": {
+          "on_entry": ["/function rebo/player/bee/rc_hold"],
+          "transitions": [
+            {
+              "on_eat": "v.item_use_normalized = (q.main_hand_item_use_duration / q.main_hand_item_max_duration); return v.item_use_normalized > 0.0 && v.item_use_normalized < 0.04;"
+            },
+            {
+              "on_unequip": "!q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:bee')"
+            },
+            { "rc_hold_loop": "q.is_using_item" },
+            { "rc_up": "!q.is_using_item" }
+          ]
+        },
+        "rc_hold_loop": {
+          "on_entry": ["/function rebo/player/bee/rc_hold"],
+          "transitions": [{ "rc_hold": "return true;" }]
+        },
+        "on_eat": {
+          "on_entry": ["/function rebo/player/bee/on_eat"],
+          "transitions": [{ "c_idle": "return true;" }]
+        },
+        "rc_up": {
+          "on_entry": ["/function rebo/player/bee/rc_up"],
+          "transitions": [{ "c_idle": "return true;" }]
         }
       }
     },
-    "controller.animation.player.cow" : {
-      "initial_state" : "default",
-      "states" : {
-        "default" : {
-            "transitions" : [
-              { "on_consume" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:cow') && q.main_hand_item_use_duration == 1" },
-              { "on_attack" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:bucket') && v.attack_time != 0.0" },
-              { "on_use" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:milk_bucket') && q.main_hand_item_use_duration == 1" }
+    "controller.animation.player.variant": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "variant-0": "q.variant == 0" },
+            { "variant-1": "q.variant == 1" },
+            { "variant-2": "q.variant == 2" },
+            { "variant-3": "q.variant == 3" },
+            { "variant-4": "q.variant == 4" },
+            { "variant-5": "q.variant == 5" },
+            { "variant-6": "q.variant == 6" },
+            { "variant-7": "q.variant == 7" },
+            { "variant-8": "q.variant == 8" },
+            { "variant-9": "q.variant == 9" },
+            { "variant-10": "q.variant == 10" },
+            { "variant-11": "q.variant == 11" },
+            { "variant-12": "q.variant == 12" },
+            { "variant-13": "q.variant == 13" },
+            { "variant-14": "q.variant == 14" },
+            { "variant-15": "q.variant == 15" },
+            { "variant-16": "q.variant == 16" },
+            { "variant-17": "q.variant == 17" },
+            { "variant-18": "q.variant == 18" },
+            { "variant-19": "q.variant == 19" },
+            { "variant-20": "q.variant == 20" }
           ]
         },
-        "on_consume" : {
-          "on_entry": ["/function rebo/cow/on_consume"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
+        "variant-0": {
+          "on_entry": ["/scoreboard players set @s variant 0"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 0" }]
         },
-        "on_attack" : {
-          "on_entry": ["/execute @s[scores={v-cow=0..}] ~~~ function rebo/cow/on_attack"],
-          "transitions" : [
-            {"default": "v.attack_time == 0.0"}
-          ]
+        "variant-1": {
+          "on_entry": ["/scoreboard players set @s variant 1"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 1" }]
         },
-        "on_use" : {
-          "on_entry": ["/function rebo/cow/on_use"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
+        "variant-2": {
+          "on_entry": ["/scoreboard players set @s variant 2"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 2" }]
+        },
+        "variant-3": {
+          "on_entry": ["/scoreboard players set @s variant 3"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 3" }]
+        },
+        "variant-4": {
+          "on_entry": ["/scoreboard players set @s variant 4"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 4" }]
+        },
+        "variant-5": {
+          "on_entry": ["/scoreboard players set @s variant 5"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 5" }]
+        },
+        "variant-6": {
+          "on_entry": ["/scoreboard players set @s variant 6"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 6" }]
+        },
+        "variant-7": {
+          "on_entry": ["/scoreboard players set @s variant 7"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 7" }]
+        },
+        "variant-8": {
+          "on_entry": ["/scoreboard players set @s variant 8"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 8" }]
+        },
+        "variant-9": {
+          "on_entry": ["/scoreboard players set @s variant 9"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 9" }]
+        },
+        "variant-10": {
+          "on_entry": ["/scoreboard players set @s variant 10"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 10" }]
+        },
+        "variant-11": {
+          "on_entry": ["/scoreboard players set @s variant 11"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 11" }]
+        },
+        "variant-12": {
+          "on_entry": ["/scoreboard players set @s variant 12"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 12" }]
+        },
+        "variant-13": {
+          "on_entry": ["/scoreboard players set @s variant 13"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 13" }]
+        },
+        "variant-14": {
+          "on_entry": ["/scoreboard players set @s variant 14"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 14" }]
+        },
+        "variant-15": {
+          "on_entry": ["/scoreboard players set @s variant 15"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 15" }]
+        },
+        "variant-16": {
+          "on_entry": ["/scoreboard players set @s variant 16"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 16" }]
+        },
+        "variant-17": {
+          "on_entry": ["/scoreboard players set @s variant 17"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 17" }]
+        },
+        "variant-18": {
+          "on_entry": ["/scoreboard players set @s variant 18"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 18" }]
+        },
+        "variant-19": {
+          "on_entry": ["/scoreboard players set @s variant 19"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 19" }]
+        },
+        "variant-20": {
+          "on_entry": ["/scoreboard players set @s variant 20"],
+          "on_exit": [],
+          "transitions": [{ "default": "q.variant != 20" }]
         }
       }
     },
-    "controller.animation.player.pig" : {
-      "initial_state" : "default",
-      "states" : {
-        "default" : {
-            "transitions" : [
-              { "on_consume" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:pig') && q.main_hand_item_use_duration == 1" },
-              { "on_eat" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:carrot', 'minecraft:potato') && q.main_hand_item_use_duration == 1" }
-          ]
+    "controller.animation.player.using_item": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "using_item": "q.is_using_item" }]
         },
-        "on_consume" : {
-          "on_entry": ["/function rebo/pig/on_consume"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
-        },
-        "on_eat" : {
-          "on_entry": ["/execute @s[scores={v-pig=0..}] ~~~ function rebo/pig/on_eat"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
+        "using_item": {
+          "on_entry": ["/tag @s add is_using_item"],
+          "on_exit": ["/tag @s remove is_using_item"],
+          "transitions": [{ "default": "!q.is_using_item" }]
         }
       }
     },
-    "controller.animation.player.sheep" : {
-      "initial_state" : "default",
-      "states" : {
-        "default" : {
-            "transitions" : [
-              { "on_consume" : "q.is_item_name_any('slot.weapon.mainhand', 0, 'rebo:sheep') && q.main_hand_item_use_duration == 1" },
-              { "on_attack" : "(v.attack_time != 0 ) && (q.health < q.max_health)" }
-          ]
+    "controller.animation.player.is_riding": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "using_item": "q.is_riding" }]
         },
-        "on_consume" : {
-          "on_entry": ["/function rebo/sheep/on_consume"],
-          "transitions" : [
-            {"default": "(1.0)"}
-          ]
+        "using_item": {
+          "on_entry": ["/tag @s add is_riding"],
+          "on_exit": ["/tag @s remove is_riding"],
+          "transitions": [{ "default": "!q.is_riding" }]
+        }
+      }
+    },
+    "controller.animation.player.on_attack": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "on_attack": "v.attack_time > 0" }]
         },
-        "on_attack" : {
-          "on_entry": ["/execute @s[scores={v-sheep=0..}] ~~~ function rebo/sheep/on_attack"],
-          "transitions" : [
-            {"default": "v.attack_time == 0"}
-          ]
+        "on_attack": {
+          "on_entry": ["/function rebo/player/on_attack"],
+          "transitions": [{ "default": "v.attack_time == 0" }]
+        }
+      }
+    },
+    "controller.animation.player.on_jump": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "on_jump": "q.is_jumping" }]
+        },
+        "on_jump": {
+          "on_entry": ["/tag @s add is_jumping"],
+          "on_exit": ["/tag @s remove is_jumping"],
+          "transitions": [{ "default": "!q.is_jumping" }]
+        }
+      }
+    },
+    "controller.animation.player.stunned": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "on_jump": "q.is_stunned" }]
+        },
+        "on_jump": {
+          "on_entry": ["/tag @s add nether"],
+          "on_exit": ["/tag @s remove nether"],
+          "transitions": [{ "default": "!q.is_stunned" }]
+        }
+      }
+    },
+    "controller.animation.player.sprinting": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "on_entry": [],
+          "transitions": [{ "on_jump": "q.is_sprinting" }]
+        },
+        "on_jump": {
+          "on_entry": ["/tag @s add is_sprinting"],
+          "on_exit": ["/tag @s remove is_sprinting"],
+          "transitions": [{ "default": "!q.is_sprinting" }]
+        }
+      }
+    },
+    "controller.animation.player.on_ground": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [{ "on_ground": "q.is_on_ground" }]
+        },
+        "on_ground": {
+          "on_entry": ["/tag @s add is_on_ground"],
+          "on_exit": ["/tag @s remove is_on_ground"],
+          "transitions": [{ "default": "!q.is_on_ground" }]
+        }
+      }
+    },
+    "controller.animation.player.sneaking": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [{ "is_sneaking": "q.is_sneaking" }]
+        },
+        "is_sneaking": {
+          "on_entry": ["/tag @s add is_sneaking"],
+          "on_exit": ["/tag @s remove is_sneaking"],
+          "transitions": [{ "default": "!q.is_sneaking" }]
+        }
+      }
+    },
+    "controller.animation.player.in_water": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [{ "is_sneaking": "q.is_in_water" }]
+        },
+        "is_sneaking": {
+          "on_entry": ["/tag @s add is_in_water"],
+          "on_exit": ["/tag @s remove is_in_water"],
+          "transitions": [{ "default": "!q.is_in_water" }]
+        }
+      }
+    },
+    "controller.animation.player.jumping": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [{ "is_sneaking": "q.is_jumping" }]
+        },
+        "is_sneaking": {
+          "on_entry": ["/tag @s add is_jumping"],
+          "on_exit": ["/tag @s remove is_jumping"],
+          "transitions": [{ "default": "!q.is_jumping" }]
         }
       }
     }

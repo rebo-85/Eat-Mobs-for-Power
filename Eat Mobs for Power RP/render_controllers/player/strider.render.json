@@ -1,0 +1,26 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.strider": {
+		"arrays": {
+	        "textures": {
+          		"Array.base": [
+          			"Texture.strider",
+          			"Texture.strider_saddled"
+          		],
+          		"Array.suffocated": [
+          			"Texture.strider_suffocated",
+          			"Texture.strider_suffocated_saddled"
+          		]
+	        }
+      	},
+		"geometry": "Geometry.strider",
+		"materials": [
+			{ "*": "Material.strider" }
+		],
+		"textures": [
+			"!query.is_ignited ? Array.suffocated[query.is_saddled] : Array.base[query.is_saddled]"
+		]
+    }
+  }
+}

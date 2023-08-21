@@ -1,0 +1,15 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.ghast": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.ghast", "Texture.ghast_shooting" ]
+        }
+      },
+      "geometry": "Geometry.ghast",
+      "materials": [ { "*": "Material.ghast" } ],
+      "textures": [ "Array.skins[variable.ischarging]" ]
+    }
+  }
+}

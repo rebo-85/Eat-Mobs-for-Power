@@ -1,0 +1,27 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "rebo:bee",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "textures/entity/bee/bee"
+      },
+      "geometry": {
+        "default": "geometry.modified_bee"
+      },
+      "animations": {
+        "a.third_person.hold": "animation.attachable.bee.third_person.hold",
+        "a.first_person.hold": "animation.attachable.bee.first_person.hold",
+        "a.first_person.using_item": "animation.attachable.bee.first_person.using_item",
+        "ac.root": "controller.animation.attachable.root"
+      },
+      "scripts": {
+        "animate": [
+            "ac.root"
+        ]
+      },
+      "render_controllers": [ "controller.render.default" ]
+    }
+  }
+}

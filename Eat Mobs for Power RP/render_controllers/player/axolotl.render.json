@@ -1,0 +1,28 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.axolotl": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.axolotl_blue",
+            "Texture.axolotl_cyan",
+            "Texture.axolotl_gold",
+            "Texture.axolotl_lucy",
+            "Texture.axolotl_wild"
+          ]
+        }
+      },
+      "geometry": "Geometry.axolotl",
+      "materials": [
+        { "*": "Material.axolotl" },
+        { "*arm": "Material.axolotl_limbs" },
+        { "*leg": "Material.axolotl_limbs" }
+      ],
+      "textures": [ "Array.skins[q.skin_id]" ],
+      "part_visibility": [
+        { "*": true }
+      ]
+    }
+  }
+}

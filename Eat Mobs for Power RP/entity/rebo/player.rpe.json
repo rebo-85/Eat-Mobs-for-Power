@@ -1,0 +1,780 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:player",
+      "materials": {
+        "default": "entity_alphatest",
+        "cape": "entity_alphatest",
+        "animated": "player_animated",
+
+        "axolotl_limbs": "axolotl_limbs",
+        "axolotl": "axolotl",
+
+        "blaze_body": "blaze_body",
+        "blaze_head": "blaze_head",
+
+        "cat": "cat",
+
+        "chicken": "chicken",
+        "chicken_legs": "chicken_legs",
+
+        "creeper": "creeper",
+        "creeper_charged": "charged_creeper",
+
+        "enderman": "enderman",
+
+        "fox": "fox",
+
+        "frog": "frog",
+
+        "ghast": "ghast",
+
+        "panda": "panda",
+
+        "parrot": "parrot",
+
+        "pig": "pig",
+
+        "piglin_brute": "piglin_brute",
+
+        "salmon": "salmon",
+
+        "skeleton": "skeleton",
+
+        "strider": "strider",
+
+        "spider": "spider",
+        "spider_invisible": "spider_invisible",
+
+        "zombie": "zombie"
+      },
+      "textures": {
+        "default": "textures/entity/steve",
+        "cape": "textures/entity/cape_invisible",
+        "null": "textures/rebo/null",
+
+        "axolotl_blue": "textures/entity/axolotl/axolotl_blue",
+        "axolotl_cyan": "textures/entity/axolotl/axolotl_cyan",
+        "axolotl_gold": "textures/entity/axolotl/axolotl_gold",
+        "axolotl_lucy": "textures/entity/axolotl/axolotl_lucy",
+        "axolotl_wild": "textures/entity/axolotl/axolotl_wild",
+
+        "blaze": "textures/entity/blaze",
+
+        "cat_white_tame": "textures/entity/cat/white_tame",
+        "cat_black_tame": "textures/entity/cat/tuxedo_tame",
+        "cat_red_tame": "textures/entity/cat/redtabby_tame",
+        "cat_siamese_tame": "textures/entity/cat/siamesecat_tame",
+        "cat_british_tame": "textures/entity/cat/britishshorthair_tame",
+        "cat_calico_tame": "textures/entity/cat/calico_tame",
+        "cat_persian_tame": "textures/entity/cat/persian_tame",
+        "cat_ragdoll_tame": "textures/entity/cat/ragdoll_tame",
+        "cat_tabby_tame": "textures/entity/cat/tabby_tame",
+        "cat_all_black_tame": "textures/entity/cat/allblackcat_tame",
+        "cat_jellie_tame":  "textures/entity/cat/jellie_tame",
+
+        "chicken": "textures/entity/chicken",
+
+        "creeper": "textures/entity/creeper/creeper",
+        "creeper_charged": "textures/entity/creeper/creeper_armor",
+
+        "enderman": "textures/entity/enderman/enderman",
+
+        "fox": "textures/entity/fox/fox",
+
+        "frog_temperate": "textures/entity/frog/temperate_frog",
+				"frog_cold": "textures/entity/frog/cold_frog",
+				"frog_warm": "textures/entity/frog/warm_frog",
+
+        "ghast": "textures/entity/ghast/ghast",
+        "ghast_shooting": "textures/entity/ghast/ghast_shooting",
+
+        "panda": "textures/entity/panda/panda",
+        "panda_lazy": "textures/entity/panda/panda_lazy",
+        "panda_worried": "textures/entity/panda/panda_worried",
+        "panda_playful": "textures/entity/panda/panda_playful",
+        "panda_brown": "textures/entity/panda/panda_brown",
+        "panda_weak": "textures/entity/panda/panda_sneezy",
+        "panda_aggressive": "textures/entity/panda/panda_aggressive",
+
+        "parrot_blue": "textures/entity/parrot/parrot_blue",
+        "parrot_green": "textures/entity/parrot/parrot_green",
+        "parrot_red_blue": "textures/entity/parrot/parrot_red_blue",
+        "parrot_yellow_blue": "textures/entity/parrot/parrot_yellow_blue",
+        "parrot_grey": "textures/entity/parrot/parrot_grey",
+
+        "pig": "textures/entity/pig/pig",
+        "pig_saddled": "textures/entity/pig/pig_saddle",
+
+        "piglin_brute": "textures/entity/piglin/piglin_brute",
+
+        "salmon": "textures/entity/fish/salmon",
+
+        "skeleton": "textures/entity/skeleton/skeleton",
+
+        "strider": "textures/entity/strider/strider",
+        "strider_saddled": "textures/entity/strider/strider_saddled",
+        "strider_suffocated": "textures/entity/strider/strider_suffocated",
+        "strider_suffocated_saddled": "textures/entity/strider/strider_suffocated_saddled",
+
+        "spider": "textures/entity/spider/spider",
+
+        "zombie": "textures/entity/zombie/zombie"
+
+      },
+      "geometry": {
+        "default": "geometry.humanoid.custom",
+        "cape": "geometry.cape",
+
+        "axolotl": "geometry.player.axolotl",
+
+        "blaze": "geometry.player.blaze",
+        
+        "cat": "geometry.player.cat",
+
+        "creeper": "geometry.player.creeper",
+        "creeper_charged": "geometry.player.creeper_charged",
+
+        "chicken": "geometry.player.chicken",
+
+        "enderman": "geometry.player.enderman",
+
+        "fox": "geometry.player.fox",
+        
+        "frog": "geometry.player.frog",
+        
+        "ghast": "geometry.player.ghast",
+        
+        "panda": "geometry.player.panda",
+        
+        "parrot": "geometry.player.parrot",
+        
+        "pig": "geometry.player.pig",
+        
+        "piglin_brute": "geometry.player.piglin_brute",
+        
+        "salmon": "geometry.player.salmon",
+        
+        "skeleton": "geometry.player.skeleton",
+        
+        "strider": "geometry.player.strider",
+        
+        "spider": "geometry.player.spider",
+        
+        "zombie": "geometry.player.zombie"
+      },
+      "animations": {
+
+        // Player
+
+          "custom_gliding": "animation.player.custom_gliding",
+          "custom_riding": "animation.player.custom_riding",
+
+          "root": "controller.animation.player.root",
+          "base_controller": "controller.animation.player.base",
+          "hudplayer": "controller.animation.player.hudplayer",
+          "humanoid_base_pose": "animation.humanoid.base_pose",
+          "ac.player.look_at_target": "controller.animation.player.look_at_target",
+          "look_at_target_ui": "animation.player.look_at_target.ui",
+          "a.player.look_at_target_default": "animation.player.look_at_target.default",
+          "a.player.look_at_target_gliding": "animation.player.look_at_target.gliding",
+          "a.player.look_at_target_swimming": "animation.player.look_at_target.swimming",
+          "look_at_target_inverted": "animation.player.look_at_target.inverted",
+          "cape": "animation.player.cape",
+          "move.arms": "animation.player.move.arms",
+          "move.legs": "animation.player.move.legs",
+          "swimming": "animation.player.swim",
+          "swimming.legs": "animation.player.swim.legs",
+          "riding.arms": "animation.player.riding.arms",
+          "riding.legs": "animation.player.riding.legs",
+          "holding": "animation.player.holding",
+          "brandish_spear": "animation.humanoid.brandish_spear",
+          "holding_spyglass": "animation.humanoid.holding_spyglass",
+          "charging": "animation.humanoid.charging",
+          "attack.positions": "animation.player.attack.positions",
+          "attack.rotations": "animation.player.attack.rotations",
+          "sneaking": "animation.player.sneaking",
+          "bob": "animation.player.bob",
+          "damage_nearby_mobs": "animation.humanoid.damage_nearby_mobs",
+          "bow_and_arrow": "animation.humanoid.bow_and_arrow",
+          "use_item_progress": "animation.humanoid.use_item_progress",
+          "skeleton_attack": "animation.skeleton.attack",
+          "sleeping": "animation.player.sleeping",
+          "first_person_base_pose": "animation.player.first_person.base_pose",
+          "first_person_empty_hand": "animation.player.first_person.empty_hand",
+          "first_person_swap_item": "animation.player.first_person.swap_item",
+          "first_person_shield_block": "animation.player.first_person.shield_block",
+          "first_person_attack_controller": "controller.animation.player.first_person_attack",
+          "first_person_attack_rotation": "animation.player.first_person.attack_rotation",
+          "first_person_vr_attack_rotation": "animation.player.first_person.vr_attack_rotation",
+          "first_person_walk": "animation.player.first_person.walk",
+          "first_person_map_controller": "controller.animation.player.first_person_map",
+          "first_person_map_hold": "animation.player.first_person.map_hold",
+          "first_person_map_hold_attack": "animation.player.first_person.map_hold_attack",
+          "first_person_map_hold_off_hand": "animation.player.first_person.map_hold_off_hand",
+          "first_person_map_hold_main_hand": "animation.player.first_person.map_hold_main_hand",
+          "first_person_crossbow_equipped": "animation.player.first_person.crossbow_equipped",
+          "third_person_crossbow_equipped": "animation.player.crossbow_equipped",
+          "third_person_bow_equipped": "animation.player.bow_equipped",
+          "crossbow_hold": "animation.player.crossbow_hold",
+          "crossbow_controller": "controller.animation.player.crossbow",
+          "shield_block_main_hand": "animation.player.shield_block_main_hand",
+          "shield_block_off_hand": "animation.player.shield_block_off_hand",
+          "blink": "controller.animation.persona.blink",
+
+        // Axolotl
+          "a.axolotl.armor_setup": "animation.player.axolotl.armor_setup",
+          "a.axolotl.idle_float": "animation.player.axolotl.idle_underwater",
+          "a.axolotl.idle_floor_water": "animation.player.axolotl.idle_floor_underwater",
+          "a.axolotl.look_at_target": "animation.player.axolotl.look_at_target",
+          "a.axolotl.play_dead": "animation.player.axolotl.play_dead",
+          "a.axolotl.riding": "animation.player.axolotl.riding",
+          "a.axolotl.sleeping": "animation.player.axolotl.sleeping",
+          "a.axolotl.sound.ambient_in_water": "animation.player.axolotl.sound.ambient_in_water",
+          "a.axolotl.sound.ambient": "animation.player.axolotl.sound.ambient",
+          "a.axolotl.sound.death": "animation.player.axolotl.sound.death",
+          "a.axolotl.sound.hurt": "animation.player.axolotl.sound.hurt",
+          "a.axolotl.swim_angle": "animation.player.axolotl.swim_angle",
+          // "a.axolotl.swim": "animation.player.axolotl.swim",
+          "a.axolotl.walk_floor_water": "animation.player.axolotl.walk_floor_underwater",
+          "a.axolotl.walk_floor": "animation.player.axolotl.walk_floor",
+          "ac.axolotl.general": "controller.animation.player.axolotl.general",
+          "ac.axolotl.move": "controller.animation.player.axolotl.move",
+          "ac.axolotl.root": "controller.animation.player.axolotl.root",
+          "ac.axolotl.sound.death": "controller.animation.player.axolotl.sound.death",
+          "ac.axolotl.sound.hurt": "controller.animation.player.axolotl.sound.hurt",
+          "ac.axolotl.sound.root": "controller.animation.player.axolotl.sound.root",
+          // "a.axolotl.idle_floor": "animation.player.axolotl.idle_floor",
+
+        // Blaze
+          "a.blaze.armor_setup": "animation.player.blaze.armor_setup",
+          "a.blaze.look_at_target": "animation.player.blaze.look_at_target",
+          "a.blaze.move": "animation.player.blaze.move",
+          "a.blaze.sleeping": "animation.player.blaze.sleeping",
+          "a.blaze.sound.ambient": "animation.player.blaze.sound.ambient",
+          "a.blaze.sound.death": "animation.player.blaze.sound.death",
+          "a.blaze.sound.hurt": "animation.player.blaze.sound.hurt",
+          "a.blaze.swim": "animation.player.blaze.swim",
+          "ac.blaze.flame": "controller.animation.player.blaze.flame",
+          "ac.blaze.root": "controller.animation.player.blaze.root",
+          "ac.blaze.sound.death": "controller.animation.player.blaze.sound.death",
+          "ac.blaze.sound.hurt": "controller.animation.player.blaze.sound.hurt",
+          "ac.blaze.sound.root": "controller.animation.player.blaze.sound.root",
+
+        // Cat
+          "a.cat.armor_setup": "animation.player.cat.armor_setup",
+          // "a.cat.lie_down": "animation.player.cat.lie_down",
+          "a.cat.look_at_target.default": "animation.player.cat.look_at_target.default",
+          // "a.cat.look_at_target.gliding": "animation.player.cat.look_at_target.gliding",
+          // "a.cat.look_at_target.swimming": "animation.player.cat.look_at_target.swimming",
+          "a.cat.riding": "animation.player.cat.riding",
+          "a.cat.sneak": "animation.player.cat.sneak",
+          "a.cat.sound.ambient": "animation.player.cat.sound.ambient",
+          "a.cat.sound.death": "animation.player.cat.sound.death",
+          "a.cat.sound.hurt": "animation.player.cat.sound.hurt",
+          "a.cat.sprint": "animation.player.cat.sprint",
+          "a.cat.walk": "animation.player.cat.walk",
+          // "ac.cat.look_at_target": "controller.animation.player.cat.look_at_target",
+          "ac.cat.root": "controller.animation.player.cat.root",
+          "ac.cat.sound.death": "controller.animation.player.cat.sound.death",
+          "ac.cat.sound.hurt": "controller.animation.player.cat.sound.hurt",
+          "ac.cat.sound.root": "controller.animation.player.cat.sound.root",
+          // "a.cat.sit": "animation.player.cat.sit",
+
+        // Chicken
+          "a.chicken.armor_setup": "animation.player.chicken.armor_setup",
+          "a.chicken.baby_transform": "animation.player.chicken.baby_transform",
+          "a.chicken.general": "animation.player.chicken.general.v1.0",
+          "a.chicken.look_at_target": "animation.player.chicken.look_at_target",
+          "a.chicken.move": "animation.player.chicken.move",
+          "a.chicken.riding": "animation.player.chicken.riding",
+          "a.chicken.sound.ambient": "animation.player.chicken.sound.ambient",
+          "a.chicken.sound.death": "animation.player.chicken.sound.death",
+          "a.chicken.sound.hurt": "animation.player.chicken.sound.hurt",
+          "ac.chicken.root": "controller.animation.player.chicken.root",
+          "ac.chicken.sound.death": "controller.animation.player.chicken.sound.death",
+          "ac.chicken.sound.hurt": "controller.animation.player.chicken.sound.hurt",
+          "ac.chicken.sound.root": "controller.animation.player.chicken.sound.root",
+
+        // Creeper
+          "a.creeper.armor_setup": "animation.player.creeper.armor_setup",
+          "a.creeper.look_at_target.default": "animation.player.creeper.look_at_target.default",
+          "a.creeper.look_at_target.gliding": "animation.player.creeper.look_at_target.gliding",
+          "a.creeper.look_at_target.swimming": "animation.player.creeper.look_at_target.swimming",
+          "a.creeper.move": "animation.player.creeper.move",
+          "a.creeper.sleeping": "animation.player.creeper.sleeping",
+          "a.creeper.swim": "animation.player.creeper.swim",
+          "a.creeper.sound.ambient": "animation.player.creeper.sound.ambient",
+          "a.creeper.sound.death": "animation.player.creeper.sound.death",
+          "a.creeper.sound.hurt": "animation.player.creeper.sound.hurt",
+          "a.creeper.swelling": "animation.player.creeper.swelling",
+          "ac.creeper.look_at_target": "controller.animation.player.creeper.look_at_target",
+          "ac.creeper.root": "controller.animation.player.creeper.root",
+          "ac.creeper.sound.death": "controller.animation.player.creeper.sound.death",
+          "ac.creeper.sound.hurt": "controller.animation.player.creeper.sound.hurt",
+          "ac.creeper.sound.root": "controller.animation.player.creeper.sound.root",
+
+        // Enderman
+          "a.enderman.armor_setup": "animation.player.enderman.armor_setup",
+          "a.enderman.arms_legs": "animation.player.enderman.arms_legs",
+          "a.enderman.attack.rotations": "animation.player.enderman.attack.rotations",
+          "a.enderman.base_pose": "animation.player.enderman.base_pose",
+          "a.enderman.bob": "animation.player.enderman.bob",
+          "a.enderman.carrying": "animation.player.enderman.carrying",
+          "a.enderman.sleeping": "animation.player.enderman.sleeping",
+          "a.enderman.swim": "animation.player.enderman.swim",
+          "a.enderman.shield_block_main_hand": "animation.player.enderman.shield_block_main_hand", 
+          "a.enderman.shield_block_off_hand": "animation.player.enderman.shield_block_off_hand", 
+          "a.enderman.look_at_target_default": "animation.player.enderman.look_at_target.default",
+          "a.enderman.look_at_target_gliding": "animation.player.enderman.look_at_target.gliding",
+          "a.enderman.look_at_target_swimming": "animation.player.enderman.look_at_target.swimming",
+          "a.enderman.move": "animation.player.enderman.move",
+          "a.enderman.scary_face": "animation.player.enderman.scary_face",
+          "ac.enderman.carrying": "controller.animation.player.enderman.carrying",
+          "ac.enderman.look_at_target": "controller.animation.player.enderman.look_at_target",
+          "ac.enderman.root": "controller.animation.player.enderman.root",
+          "ac.enderman.scary_face": "controller.animation.player.enderman.scary_face",
+          
+          "a.enderman.sound.ambient": "animation.player.enderman.sound.ambient",
+          "a.enderman.sound.death": "animation.player.enderman.sound.death",
+          "a.enderman.sound.hurt": "animation.player.enderman.sound.hurt",
+          "a.enderman.sound.mad": "animation.player.enderman.sound.mad",
+          "ac.enderman.sound.mad": "controller.animation.player.enderman.sound.mad",
+          "ac.enderman.sound.death": "controller.animation.player.enderman.sound.death",
+          "ac.enderman.sound.hurt": "controller.animation.player.enderman.sound.hurt",
+          "ac.enderman.sound.root": "controller.animation.player.enderman.sound.root",
+
+        // Fox 
+          "a.fox.armor_setup": "animation.player.fox.armor_setup",
+          "a.fox.baby_transform": "animation.player.fox.baby_transform",
+          "a.fox.crouch": "animation.player.fox.crouch",
+          "a.fox.look_at_target": "animation.player.fox.look_at_target",
+          "a.fox.pounce": "animation.player.fox.pounce",
+          "a.fox.setup": "animation.player.fox.setup",
+          "a.fox.riding": "animation.player.fox.riding",
+          "a.fox.sleep": "animation.player.fox.sleep",
+          "a.fox.sound.ambient": "animation.player.fox.sound.ambient",
+          "a.fox.sound.death": "animation.player.fox.sound.death",
+          "a.fox.sound.hurt": "animation.player.fox.sound.hurt",
+          "a.fox.sound.sleep": "animation.player.fox.sound.sleep",
+          "a.fox.stuck": "animation.player.fox.stuck",
+          "a.fox.walk": "animation.player.fox.walk",
+          "a.fox.wiggle": "animation.player.fox.wiggle",
+          "ac.fox.move": "controller.animation.player.fox.move",
+          "ac.fox.root": "controller.animation.player.fox.root",
+          "ac.fox.sound.death": "controller.animation.player.fox.sound.death",
+          "ac.fox.sound.hurt": "controller.animation.player.fox.sound.hurt",
+          "ac.fox.sound.root": "controller.animation.player.fox.sound.root",
+          // "a.fox.sit": "animation.player.fox.sit",
+
+        // Frog
+          "a.frog.armor_setup": "animation.player.frog.armor_setup",
+          "a.frog.croak": "animation.player.frog.croak",
+          "a.frog.idle_water": "animation.player.frog.idle.water",
+          "a.frog.jump": "animation.player.frog.jump",
+          "a.frog.riding": "animation.player.frog.riding",
+          "a.frog.sound.ambient": "animation.player.frog.sound.ambient",
+          "a.frog.sound.death": "animation.player.frog.sound.death",
+          "a.frog.sound.hurt": "animation.player.frog.sound.hurt",
+          "a.frog.swim": "animation.player.frog.swim",
+          "a.frog.tongue": "animation.player.frog.tongue",
+          "a.frog.walk": "animation.player.frog.walk",
+          "ac.frog.croaking": "controller.animation.player.frog.croaking",
+          "ac.frog.eat_mob": "controller.animation.player.frog.eat_mob",
+          "ac.frog.general": "controller.animation.player.frog.general",
+          "ac.frog.root": "controller.animation.player.frog.root",
+          "ac.frog.sound.death": "controller.animation.player.frog.sound.death",
+          "ac.frog.sound.hurt": "controller.animation.player.frog.sound.hurt",
+          "ac.frog.sound.root": "controller.animation.player.frog.sound.root",
+
+        // Ghast
+          "a.ghast.armor_setup": "animation.player.ghast.armor_setup",
+          "a.ghast.move": "animation.player.ghast.move",
+          "a.ghast.scale": "animation.player.ghast.scale",
+          "a.ghast.sound.ambient": "animation.player.ghast.sound.ambient",
+          "a.ghast.sound.death": "animation.player.ghast.sound.death",
+          "a.ghast.sound.hurt": "animation.player.ghast.sound.hurt",
+          "a.ghast.sound.shoot": "animation.player.ghast.sound.shoot",
+          "ac.ghast.root": "controller.animation.player.ghast.root",
+          "ac.ghast.sound.death": "controller.animation.player.ghast.sound.death",
+          "ac.ghast.sound.hurt": "controller.animation.player.ghast.sound.hurt",
+          "ac.ghast.sound.root": "controller.animation.player.ghast.sound.root",
+          "ac.ghast.sound.shoot": "controller.animation.player.ghast.sound.shoot",
+
+        // Panda
+          "a.panda.armor_setup": "animation.player.panda.armor_setup",
+          "a.panda.baby_transform": "animation.player.panda.baby_transform",
+          "a.panda.look_at_target": "animation.player.panda.look_at_target",
+          "a.panda.lying": "animation.player.panda.lying",
+          "a.panda.riding": "animation.player.panda.riding",
+          "a.panda.rolling": "animation.player.panda.rolling",
+          "a.panda.sitting": "animation.player.panda.sitting",
+          "a.panda.sneezing": "animation.player.panda.sneezing",
+          "a.panda.sound.ambient": "animation.player.panda.sound.ambient",
+          "a.panda.sound.death": "animation.player.panda.sound.death",
+          "a.panda.sound.hurt": "animation.player.panda.sound.hurt",
+          "a.panda.unhappy": "animation.player.panda.unhappy",
+          "a.panda.walk": "animation.player.panda.walk",
+          "ac.panda.move": "controller.animation.player.panda.move",
+          "ac.panda.root": "controller.animation.player.panda.root",
+          "ac.panda.sound.death": "controller.animation.player.panda.sound.death",
+          "ac.panda.sound.hurt": "controller.animation.player.panda.sound.hurt",
+          "ac.panda.sound.root": "controller.animation.player.panda.sound.root",
+
+        // Parrot
+          "a.parrot.armor_setup": "animation.player.parrot.armor_setup",
+          "a.parrot.base": "animation.player.parrot.base",
+          "a.parrot.dance": "animation.player.parrot.dance",
+          "a.parrot.flying": "animation.player.parrot.flying",
+          "a.parrot.look_at_target": "animation.player.parrot.look_at_target",
+          "a.parrot.moving": "animation.player.parrot.moving",
+          "a.parrot.riding": "animation.player.parrot.riding",
+          "a.parrot.sitting": "animation.player.parrot.sitting",
+          "a.parrot.sound.ambient": "animation.player.parrot.sound.ambient",
+          "a.parrot.sound.death": "animation.player.parrot.sound.death",
+          "a.parrot.sound.hurt": "animation.player.parrot.sound.hurt",
+          "a.parrot.standing": "animation.player.parrot.standing",
+          "ac.parrot.move": "controller.animation.player.parrot.move",
+          "ac.parrot.root": "controller.animation.player.parrot.root",
+          "ac.parrot.setup": "controller.animation.player.parrot.setup",
+          "ac.parrot.sound.death": "controller.animation.player.parrot.sound.death",
+          "ac.parrot.sound.hurt": "controller.animation.player.parrot.sound.hurt",
+          "ac.parrot.sound.root": "controller.animation.player.parrot.sound.root",
+
+        // Pig
+          "a.pig.armor_setup": "animation.player.pig.armor_setup",
+          "a.pig.baby_transform": "animation.player.pig.baby_transform",
+          "a.pig.look_at_target": "animation.player.pig.look_at_target",
+          "a.pig.riding": "animation.player.pig.riding",
+          "a.pig.setup": "animation.player.pig.setup",
+          "a.pig.sound.ambient": "animation.player.pig.sound.ambient",
+          "a.pig.sound.death": "animation.player.pig.sound.death",
+          "a.pig.sound.hurt": "animation.player.pig.sound.hurt",
+          "a.pig.walk": "animation.player.pig.walk",
+          "ac.pig.root": "controller.animation.player.pig.root",
+          "ac.pig.sound.death": "controller.animation.player.pig.sound.death",
+          "ac.pig.sound.hurt": "controller.animation.player.pig.sound.hurt",
+          "ac.pig.sound.root": "controller.animation.player.pig.sound.root",
+
+          // Piglin Brute
+            "a.piglin_brute.sound.ambient": "animation.player.piglin_brute.sound.ambient",
+            "a.piglin_brute.sound.death": "animation.player.piglin_brute.sound.death",
+            "a.piglin_brute.sound.hurt": "animation.player.piglin_brute.sound.hurt",
+            "ac.piglin_brute.root": "controller.animation.player.piglin_brute.root",
+            "ac.piglin_brute.sound.death": "controller.animation.player.piglin_brute.sound.death",
+            "ac.piglin_brute.sound.hurt": "controller.animation.player.piglin_brute.sound.hurt",
+            "ac.piglin_brute.sound.root": "controller.animation.player.piglin_brute.sound.root",
+
+        // Salmon
+          "a.salmon.armor_setup": "animation.player.salmon.armor_setup",
+          "a.salmon.riding": "animation.player.salmon.riding",
+          "a.salmon.sound.ambient": "animation.player.salmon.sound.ambient",
+          "a.salmon.sound.death": "animation.player.salmon.sound.death",
+          "a.salmon.sound.hurt": "animation.player.salmon.sound.hurt",
+          "a.salmon.swim": "animation.player.salmon.swim",
+          "ac.salmon.general": "controller.animation.player.salmon.general",
+          "ac.salmon.root": "controller.animation.player.salmon.root",
+          "ac.salmon.sound.death": "controller.animation.player.salmon.sound.death",
+          "ac.salmon.sound.hurt": "controller.animation.player.salmon.sound.hurt",
+          "ac.salmon.sound.root": "controller.animation.player.salmon.sound.root",
+          // "a.salmon.flop": "animation.player.salmon.flop",
+
+        // Skeleton
+          "a.skeleton.sound.ambient": "animation.player.skeleton.sound.ambient",
+          "a.skeleton.sound.death": "animation.player.skeleton.sound.death",
+          "a.skeleton.sound.hurt": "animation.player.skeleton.sound.hurt",
+          "ac.skeleton.root": "controller.animation.player.skeleton.root",
+          "ac.skeleton.sound.death": "controller.animation.player.skeleton.sound.death",
+          "ac.skeleton.sound.hurt": "controller.animation.player.skeleton.sound.hurt",
+          "ac.skeleton.sound.root": "controller.animation.player.skeleton.sound.root",
+
+        // Spider
+          "a.spider.armor_setup": "animation.player.spider.armor_setup",
+          "a.spider.default_leg_pose": "animation.player.spider.default_leg_pose",
+          "a.spider.look_at_target": "animation.player.spider.look_at_target",
+          "a.spider.riding": "animation.player.spider.riding",
+          "a.spider.sound.ambient": "animation.player.spider.sound.ambient",
+          "a.spider.sound.death": "animation.player.spider.sound.death",
+          "a.spider.sound.hurt": "animation.player.spider.sound.hurt",
+          "a.spider.walk": "animation.player.spider.walk",
+          "ac.spider.root": "controller.animation.player.spider.root",
+          "ac.spider.sound.death": "controller.animation.player.spider.sound.death",
+          "ac.spider.sound.hurt": "controller.animation.player.spider.sound.hurt",
+          "ac.spider.sound.root": "controller.animation.player.spider.sound.root",
+          
+        // Strider
+          "a.strider.armor_setup": "animation.player.strider.armor_setup",
+          "a.strider.bristle_flow": "animation.player.strider.bristle_flow",
+          "a.strider.look_at_target": "animation.player.strider.look_at_target",
+          "a.strider.sleeping": "animation.player.strider.sleeping",
+          "a.strider.walk": "animation.player.strider.walk",
+          "a.strider.sound.ambient": "animation.player.strider.sound.ambient",
+          "a.strider.sound.death": "animation.player.strider.sound.death",
+          "a.strider.sound.hurt": "animation.player.strider.sound.hurt",
+          "ac.strider.root": "controller.animation.player.strider.root",
+          "ac.strider.sound.death": "controller.animation.player.strider.sound.death",
+          "ac.strider.sound.hurt": "controller.animation.player.strider.sound.hurt",
+          "ac.strider.sound.root": "controller.animation.player.strider.sound.root",
+
+        // zombie
+          "a.zombie.sound.ambient": "animation.player.zombie.sound.ambient",
+          "a.zombie.sound.death": "animation.player.zombie.sound.death",
+          "a.zombie.sound.hurt": "animation.player.zombie.sound.hurt",
+          "ac.zombie.root": "controller.animation.player.zombie.root",
+          "ac.zombie.sound.death": "controller.animation.player.zombie.sound.death",
+          "ac.zombie.sound.hurt": "controller.animation.player.zombie.sound.hurt",
+          "ac.zombie.sound.root": "controller.animation.player.zombie.sound.root"
+
+      },
+      
+      "scripts": {
+        "initialize": [
+          "v.health = q.health;",
+          "v.swim_amount = 0.0;",
+          "v.is_brandishing_spear = 0.0;",
+          "v.is_holding_spyglass = 0.0;",
+          "v.ischarging = 0.0;",
+          "v.charging_start = 0.0;",
+          "v.time_elapsed = 0.0;",
+          "v.is_doing_custom_glide = 0.0;",
+          "v.can_sleep_animation = 0.0;",
+          "v.can_swim_animation = 0.0;",
+
+          "v.is_holding_right = 0.0;",
+          "v.is_blinking = 0.0;",
+          "v.last_blink_time = 0.0;",
+          "v.hand_bob = 0.0;"
+        ],
+        
+        "pre_animation": [
+          // Default
+            "v.time_elapsed = v.time_elapsed + q.delta_time;",
+            // "v.riding_offset = q.variant == 1 ? 12.0;",
+            // "v.riding_offset = q.variant == 3 ? 100.0;",
+            // "v.riding_offset = q.variant == 4 ? 21.0;",
+
+            // "v.modified_distance_moved = q.is_ignited ? ((q.life_time - math.round(q.life_time)) * q.is_moving) + q.ground_speed * 0.25 : q.modified_distance_moved;",
+            // "v.modified_move_speed = q.is_ignited ? ((q.life_time - math.round(q.life_time)) * q.is_moving) + q.ground_speed * 0.35 : q.modified_move_speed;",
+
+            // "v.modified_distance_moved = q.is_ignited ? q.ground_speed - math.round(q.ground_speed) : q.modified_distance_moved;",
+            // "v.modified_move_speed = q.is_ignited ?  q.ground_speed - math.round(q.ground_speed) : q.modified_move_speed;",
+
+            "v.modified_distance_moved = q.is_ignited ? math.cos(q.anim_time * 360) * q.is_moving : q.modified_distance_moved;",
+            "v.modified_move_speed = q.is_ignited ?  math.cos(q.anim_time * 360) * q.is_moving : q.modified_move_speed;",
+            
+            "v.helmet_layer_visible = 1.0;",
+            "v.leg_layer_visible = 1.0;",
+            "v.boot_layer_visible = 1.0;",
+            "v.chest_layer_visible = 1.0;",
+            "v.attack_body_rot_y = Math.sin(360*Math.sqrt(v.attack_time)) * 5.0;",
+
+            "v.can_sleep_animation = q.variant == 0 || q.variant == 2 || q.variant == 5 || q.variant == 6 || q.variant == 13|| q.variant == 15 || q.variant == 17 || q.variant == 18;",
+            "v.can_swim_animation = q.variant == 0 || q.variant == 2 || q.variant == 5 || q.variant == 6 || q.variant == 13|| q.variant == 15 || q.variant == 18;",
+            
+            "v.is_doing_custom_glide = q.variant == 1 || q.variant == 3 || q.variant == 4 || q.variant == 7|| q.variant == 8 || q.variant == 10 || q.variant == 12 || q.variant == 14 || q.variant == 16;",
+
+            // "v.swim_amount = !v.can_sleep_animation ? 0.0;",
+            // "v.gliding_speed_value = !v.can_sleep_animation ? 0.0;",
+
+            "v.tcos0 = (math.cos(q.modified_distance_moved * 38.17) * q.modified_move_speed /  v.gliding_speed_value) * 57.3;",
+            "v.first_person_rotation_factor = math.sin((1 - v.attack_time) * 180.0);",
+            "v.hand_bob = q.life_time < 0.01 ? 0.0 : v.hand_bob + ((q.is_on_ground && q.is_alive ? math.clamp(math.sqrt(math.pow(q.position_delta(0), 2.0) + math.pow(q.position_delta(2), 2.0)), 0.0, 0.1) : 0.0) - v.hand_bob) * 0.02;",
+
+            "v.map_angle = math.clamp(1 - v.player_x_rotation / 45.1, 0.0, 1.0);",
+            "v.item_use_normalized = q.main_hand_item_use_duration / q.main_hand_item_max_duration;",
+
+          // Axolotl
+            "v.moving = q.ground_speed > 0 || q.vertical_speed > 0;",
+            "v.pitch = 0;",
+
+           // Chicken
+            "v.chicken_wing_flap = ((math.cos((q.life_time * !(q.is_on_ground || q.is_riding)) * 1000) * -45) + 45);",
+
+          // Creeper
+            "v.exploding = v.exploding ?? 0;",
+            "v.exploding = !q.is_illager_captain ? 0 : v.exploding + (q.is_illager_captain * 0.01);",
+            "v.wobble = Math.sin(v.exploding * 5730) * v.exploding * 0.01 + 1.0;",
+            "v.swelling_scale1 = (Math.pow(Math.clamp(v.exploding, 0.0, 1.0), 4.0) * 0.4 + 1.0) * v.wobble;",
+            "v.swelling_scale2 = (Math.pow(Math.clamp(v.exploding, 0.0, 1.0), 4.0) * 0.1 + 1.0) / v.wobble;",
+            "v.leg_rot = Math.cos(q.modified_distance_moved * 38.17326) * 80.22 * q.modified_move_speed;",
+            "v.flash = Math.mod(Math.Round(v.exploding * 5.0), 2.0);",
+
+          // Frog
+            "v.croak = math.mod(math.round(q.life_time), 10) == 0;",
+          
+          // Ghast
+            "v.ischarging = v.charging_start + 1 > q.life_time;",
+          
+          // Parrot
+            "v.state = q.is_dancing ? 3 : (q.is_sitting ? 2 : (!q.is_on_ground && !q.is_riding ? 0 : 1));",
+            "v.dance.x = Math.cos(q.life_time * 57.3 * 20.0);",
+            "v.dance.y = -Math.sin(q.life_time * 57.3 * 20.0);",
+            "v.parrot_wing_flap = math.sin(q.life_time * 1500) + 45;",
+
+          // Salmon
+            "v.zrot = !q.is_in_water ? Math.cos((q.time_stamp + q.frame_alpha) * 14.32) * 90 : 0.0;",
+            // "v.AnimationAmountBlend = Math.lerp(v.AnimationAmountPrev, v.AnimationAmount, q.frame_alpha);",
+            "v.wiggle_speed = q.life_time * 20 * q.is_moving;",
+        
+          // Strider
+            "v.animation_speed = Math.min(q.modified_move_speed, 0.25);",
+            "v.speed = 85.9437;",
+            "v.bristle_flow = Math.cos(q.modified_distance_moved * v.speed + 180) * v.animation_speed;",
+            "v.bristle_range_mod = 1;",
+            "v.bristle_speed_mod = 1;"
+        ],
+        
+        "animate": [
+            {"custom_gliding": "(q.variant == 1 || q.variant == 3 || q.variant == 4 || q.variant == 7 || q.variant == 10 || q.variant == 12 || q.variant == 14 || q.variant == 16) && !v.is_first_person && q.is_gliding"},
+            // {"custom_riding": "(q.variant == 1 || q.variant == 3 || q.variant == 4 || q.variant == 7 || q.variant == 8 || q.variant == 11 || q.variant == 12 || q.variant == 14 || q.variant == 16  ) && !v.is_first_person && q.is_ignited"},
+            "root",
+            {"ac.axolotl.root": "q.variant == 1"},
+            {"ac.blaze.root": "q.variant == 2"},
+            {"ac.cat.root": "q.variant == 3"},
+            {"ac.chicken.root": "q.variant == 4"},
+            {"ac.creeper.root": "q.variant == 5"},
+            {"ac.enderman.root": "q.variant == 6"},
+            {"ac.fox.root": "q.variant == 7"},
+            {"ac.frog.root": "q.variant == 8"},
+            {"ac.ghast.root": "q.variant == 9"},
+            {"ac.panda.root": "q.variant ==10"},
+            {"ac.parrot.root": "q.variant ==11"},
+            {"ac.pig.root": "q.variant ==12"},
+            {"ac.piglin_brute.root": "q.variant ==13"},
+            {"ac.salmon.root": "q.variant ==14"},
+            {"ac.skeleton.root": "q.variant ==15"},
+            {"ac.spider.root": "q.variant ==16"},
+            {"ac.strider.root": "q.variant ==17"},
+            {"ac.zombie.root": "q.variant ==18"}
+
+        ]
+      },
+      "particle_effects": {
+        "p.blaze.charged_flames": "minecraft:mobflame_emitter"
+      },
+      "sound_effects": {
+        "sfx.axolotl.ambient_in_water": "mob.axolotl.idle_water",
+        "sfx.axolotl.ambient": "mob.axolotl.idle",
+        "sfx.axolotl.death": "mob.axolotl.death",
+        "sfx.axolotl.hurt": "mob.axolotl.hurt",
+
+        "sfx.blaze.ambient": "mob.blaze.breathe",
+        "sfx.blaze.death": "mob.blaze.death",
+        "sfx.blaze.hurt": "mob.blaze.hit",
+
+        "sfx.cat.ambient": "mob.cat.meow",
+        "sfx.cat.death": "mob.cat.hit",
+        "sfx.cat.hurt": "mob.cat.hit",
+
+        "sfx.chicken.ambient": "mob.chicken.say",
+        "sfx.chicken.death": "mob.chicken.hurt",
+        "sfx.chicken.hurt": "mob.chicken.hurt",
+
+        "sfx.creeper.ambient": "mob.creeper.say",
+        "sfx.creeper.death": "mob.creeper.death",
+        "sfx.creeper.hurt": "mob.creeper.say",
+        
+        "sfx.enderman.ambient": "mob.endermen.idle",
+        "sfx.enderman.death": "mob.endermen.death",
+        "sfx.enderman.hurt": "mob.endermen.hit",
+        "sfx.enderman.mad": "mob.endermen.scream",
+
+        "sfx.fox.ambient": "mob.fox.ambient",
+        "sfx.fox.death": "mob.fox.death",
+        "sfx.fox.hurt": "mob.fox.hurt",
+        "sfx.fox.sleep": "mob.fox.sleep",
+
+        "sfx.frog.ambient": "mob.frog.ambient",
+        "sfx.frog.death": "mob.frog.death",
+        "sfx.frog.hurt": "mob.frog.hurt",
+
+        "sfx.ghast.ambient": "mob.ghast.moan",
+        "sfx.ghast.warn": "mob.ghast.charge",
+        "sfx.ghast.death": "mob.ghast.death",
+        "sfx.ghast.hurt": "mob.ghast.scream",
+
+        "sfx.panda.ambient": "mob.panda.idle",
+        "sfx.panda.death": "mob.panda.death",
+        "sfx.panda.hurt": "mob.panda.hurt",
+
+        "sfx.parrot.ambient": "mob.parrot.idle",
+        "sfx.parrot.death": "mob.parrot.death",
+        "sfx.parrot.hurt": "mob.parrot.hurt",
+
+        "sfx.pig.ambient": "mob.pig.say",
+        "sfx.pig.death": "mob.pig.death",
+        "sfx.pig.hurt": "mob.pig.say",
+
+        "sfx.piglin_brute.ambient": "mob.piglin_brute.ambient",
+        "sfx.piglin_brute.death": "mob.piglin_brute.death",
+        "sfx.piglin_brute.hurt": "mob.piglin_brute.hurt",
+
+        "sfx.salmon.ambient": "mob.fish.step",
+        "sfx.salmon.death": "mob.fish.step",
+        "sfx.salmon.hurt_in_water": "mob.fish.hurt_in_water",
+        "sfx.salmon.hurt": "mob.fish.hurt",
+
+        "sfx.skeleton.ambient": "mob.skeleton.say",
+        "sfx.skeleton.death": "mob.skeleton.death",
+        "sfx.skeleton.hurt": "mob.skeleton.hurt",
+
+        "sfx.spider.ambient": "mob.spider.say",
+        "sfx.spider.death": "mob.spider.death",
+        "sfx.spider.hurt": "mob.spider.say",
+
+        "sfx.strider.ambient": "mob.strider.idle",
+        "sfx.strider.death": "mob.strider.death",
+        "sfx.strider.hurt": "mob.strider.hurt",
+
+        "sfx.zombie.ambient": "mob.zombie.say",
+        "sfx.zombie.death": "mob.zombie.death",
+        "sfx.zombie.hurt": "mob.zombie.hurt"
+      },
+      "render_controllers": [
+        
+          { "controller.render.player.first_person": "v.is_first_person" },
+          { "controller.render.player.third_person": "(!v.is_first_person && !v.map_face_icon)" },
+          { "controller.render.player.map": "v.map_face_icon" },
+
+          { "controller.render.player.axolotl": "q.variant == 1 && (!v.is_first_person && !v.map_face_icon)" },
+
+          { "controller.render.player.blaze": "q.variant == 2 && !v.is_first_person" },
+
+          { "controller.render.player.cat": "q.variant == 3 && !v.is_first_person" },
+
+          { "controller.render.player.chicken": "q.variant == 4 && !v.is_first_person" },
+
+          { "controller.render.player.creeper": "q.variant == 5 && !v.is_first_person" },
+          { "controller.render.player.creeper_charged": "q.variant == 5 && !v.is_first_person" },
+
+          { "controller.render.player.enderman": "q.variant == 6 && !v.is_first_person" },
+
+          { "controller.render.player.fox": "q.variant == 7 && !v.is_first_person" },
+
+          { "controller.render.player.frog": "q.variant == 8 && !v.is_first_person" },
+
+          { "controller.render.player.ghast": "q.variant == 9 && !v.is_first_person" },
+
+          { "controller.render.player.panda": "q.variant == 10 && !v.is_first_person" },
+
+          { "controller.render.player.parrot": "q.variant == 11 && !v.is_first_person" },
+
+          { "controller.render.player.pig": "q.variant == 12 && !v.is_first_person" },
+
+          { "controller.render.player.piglin_brute": "q.variant == 13 && !v.is_first_person" },
+
+          { "controller.render.player.salmon": "q.variant == 14 && !v.is_first_person" },
+
+          { "controller.render.player.skeleton": "q.variant == 15 && !v.is_first_person" },
+
+          { "controller.render.player.spider": "q.variant == 16 && !v.is_first_person" },
+
+          { "controller.render.player.strider": "q.variant == 17 && !v.is_first_person" },
+
+          { "controller.render.player.zombie": "q.variant == 18 && !v.is_first_person" }
+      ],
+      "enable_attachables": true
+    }
+  }
+}

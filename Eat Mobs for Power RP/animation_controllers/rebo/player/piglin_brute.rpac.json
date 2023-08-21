@@ -1,0 +1,67 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.piglin_brute.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.piglin_brute.sound.root"
+					]
+				}
+			}
+		},
+		"controller.animation.player.piglin_brute.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.piglin_brute.sound.hurt",
+						"ac.piglin_brute.sound.death",
+						{ "a.piglin_brute.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.piglin_brute.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.piglin_brute.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.piglin_brute.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.piglin_brute.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

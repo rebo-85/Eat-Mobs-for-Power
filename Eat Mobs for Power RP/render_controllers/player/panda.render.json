@@ -1,0 +1,23 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.panda": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.panda",
+            "Texture.panda_lazy",
+            "Texture.panda_worried",
+            "Texture.panda_playful",
+            "Texture.panda_brown",
+            "Texture.panda_weak",
+            "Texture.panda_aggressive"
+          ]
+        }
+      },
+      "geometry": "Geometry.panda",
+      "materials": [ { "*": "Material.panda" } ],
+      "textures": [ "Array.skins[q.skin_id]" ]
+    }
+  }
+}

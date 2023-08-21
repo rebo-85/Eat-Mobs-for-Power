@@ -1,0 +1,111 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.player.salmon.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.salmon.hurt"
+				}
+			}
+		},
+		"animation.player.salmon.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.salmon.death"
+				}
+			}
+		},
+		"animation.player.salmon.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.salmon.ambient"
+				}
+			}
+		},
+		"animation.player.salmon.armor_setup" : {
+			"loop": true,
+			"bones": {
+				"body": {
+					"position": [ 0, -20, 0 ],
+					"rotation": [ 0, 0, 0 ],
+					"scale": [ 0.01, 0.01, 0.01 ]
+				},
+				"head": {
+					"scale": [ 0.0, 0.0, 0.0 ]
+				},
+				"leftarm": {
+					"position": [ 200, 0, -400 ]
+				},
+				"rightarm": {
+					"position": [ -200, 0, -400 ]
+				},
+				"leftitem": {
+					"scale": [ "(this / 0.01) * 0.5", "(this / 0.01) * 0.5", "(this / 0.01) * 0.5" ]
+				},
+				"rightitem": {
+					"scale": [ "(this / 0.01) * 0.5", "(this / 0.01) * 0.5", "(this / 0.01) * 0.5" ]
+				},
+				"leftleg": {
+					"scale": 0.0
+				},
+				"rightleg": {
+					"scale": 0.0
+				}
+			}
+		},
+		"animation.player.salmon.riding" : {
+			"loop" : true,
+			"bones" : {
+				"salmon_root" : {
+					"position" : [ 0.0, "10.0 + q.is_ignited * 8.0", 0.0 ]
+				}
+			}
+		},
+		"animation.player.salmon.look_at_target" : {
+			"loop" : true,
+			"bones" : {
+				"salmon_head" : {
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+					"rotation" : [ "q.target_x_rotation - this", "q.target_y_rotation - this", 0.0 ]
+				}
+			}
+		},
+		"animation.player.salmon.flop" : {
+			"loop" : true,
+			"bones" : {
+				"body_back" : {
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 45.0) * -21.75", 0.0 ]
+				},
+				"body_front" : {
+					"position" : [ 0.0, "math.cos(q.life_time * 5  * 100) * 20 + 16  ", 0.0 ],
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 45.0) * 4.0", "v.zrot" ]
+				},
+				"tailfin" : {
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 45.0) * -40.0", 0.0 ]
+				}
+			}
+		},
+		"animation.player.salmon.swim" : {
+			"loop" : true,
+			"bones" : {
+				"body_back" : {
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 30.0) * -21.75", 0.0 ]
+				},
+				"body_front" : {
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 30.0) * 4.0", 0.0 ]
+				},
+				"tailfin" : {
+					"rotation" : [ 0.0, "math.cos(v.wiggle_speed * 30.0) * -40.0", 0.0 ]
+				}
+			}
+		}
+	}
+}

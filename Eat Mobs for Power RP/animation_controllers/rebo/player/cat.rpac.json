@@ -1,0 +1,114 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.cat.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						"a.cat.armor_setup",
+						"ac.cat.sound.root",
+						"a.cat.look_at_target.default",
+						{ "a.cat.sneak": "q.is_sneaking"}, 
+						{ "a.cat.walk": "!q.is_sprinting"}, 
+						{ "a.cat.sprint": "q.is_sprinting"}, 
+						{ "a.cat.riding" : "q.is_riding" }
+						// ,
+						// { "a.cat.sit": "q.is_riding"}, 
+						// { "a.cat.lie_down": "q.is_sleeping"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.cat.look_at_target" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations" : [ "a.cat.look_at_target.default" ],
+					"transitions" : [
+						{
+							"gliding" : "query.is_gliding"
+						},
+						{
+							"swimming" : "query.is_swimming"
+						}
+					]
+				},
+				"gliding" : {
+					"animations" : [ "a.cat.look_at_target.gliding" ],
+					"transitions" : [
+						{
+							"swimming" : "query.is_swimming"
+						},
+						{
+							"default" : "!query.is_gliding"
+						}
+					]
+				},
+				"swimming" : {
+					"animations" : [ "a.cat.look_at_target.swimming" ],
+					"transitions" : [
+						{
+							"gliding" : "query.is_gliding"
+						},
+						{
+							"default" : "!query.is_swimming"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.cat.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.cat.sound.hurt",
+						"ac.cat.sound.death",
+						{ "a.cat.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.cat.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.cat.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.cat.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.cat.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

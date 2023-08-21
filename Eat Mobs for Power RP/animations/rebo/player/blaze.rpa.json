@@ -1,0 +1,147 @@
+{
+	"format_version" : "1.8.0",
+  "animations": {
+		"animation.player.blaze.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.blaze.hurt"
+				}
+			}
+		},
+		"animation.player.blaze.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.blaze.death"
+				}
+			}
+		},
+		"animation.player.blaze.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.blaze.ambient"
+				}
+			}
+		},
+    "animation.player.blaze.look_at_target" : {
+		"loop" : true,
+		"bones" : {
+			"head" : {
+				"relative_to" : {
+					"rotation" : "entity"
+				},
+				// "position":[ 0, -2.9, 0 ],
+				"rotation" : [ "q.is_gliding || v.swim_amount > 0 ? query.target_x_rotation - this", "q.is_gliding || v.swim_amount > 0 ? query.target_y_rotation - this", 0.0 ]
+			},
+			"blaze_head" : {
+				"relative_to" : {
+					"rotation" : "entity"
+				},
+				"position":[ 0, -2.9, 0 ],
+				"rotation" : [ "query.target_x_rotation - this", "query.target_y_rotation - this", 0.0 ]
+			}
+		}
+	},
+	
+	"animation.player.blaze.swim" : {
+		"animation_length" : 1.3,
+		"loop" : true,
+		"override_previous_animation" : true,
+		"bones" : {
+			"blaze_root" : {
+				"position" : [ 0.0, "(math.sin(query.target_x_rotation) * 24.0 + 3.0) * variable.swim_amount", "(math.cos(query.target_x_rotation) * 24.0 + 9.0) * variable.swim_amount" ],
+				"rotation" : [ "variable.swim_amount * (90 + query.target_x_rotation)", 0.0, 0.0 ]
+			}
+		}
+	},
+    "animation.player.blaze.armor_setup": {
+		"loop": true,
+		"bones": {
+			"head": {
+				"position": [ 0, -2.9, 0 ],
+				"scale": 1.1
+			},
+			"body": {
+				"scale": 1.0
+			},
+			// "leftarm": {
+			// 	"position": [ 5.0, -8.0, 2.0 ]
+			// },
+			// "rightarm": {
+			// 	"position": [ -5.0, -8.0, 2.0 ]
+			// },
+			"leftitem": {
+				"scale": 1.0
+			},
+			"rightitem": {
+				"scale": 1.0
+			},
+			"leftleg": {
+				"scale": 0.0
+			},
+			"rightleg": {
+				"scale": 0.0
+			}
+		}
+	},
+	"animation.player.blaze.sleeping" : {
+		"loop" : true,
+		"override_previous_animation" : true,
+		"bones" : {
+			"blaze_head" : {
+				"rotation" : [ "30.0 - this", "-this", "-this" ]
+			},
+			"blaze_root" : {
+				"position" : [ "24.0 * math.cos(query.body_y_rotation) * math.cos(query.sleep_rotation) - 24.0 * math.sin(query.body_y_rotation) * math.sin(query.sleep_rotation)", 0.0, "24.0 * math.cos(query.body_y_rotation) * math.sin(query.sleep_rotation) + 24.0 * math.sin(query.body_y_rotation) * math.cos(query.sleep_rotation)" ],
+				"rotation" : [ -90.0, "270.0 - query.sleep_rotation - query.body_y_rotation", 0.0 ]
+			}
+		}
+	},
+    "animation.player.blaze.move" : {
+			"loop" : true,
+			"bones" : {
+				"upperbodyparts0" : {
+					"position" : [ "math.cos(query.life_time * -360.0        ) * 9.0", "2.0 + math.cos((0 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -360.0        ) * 9.0" ]
+				},
+				"upperbodyparts1" : {
+					"position" : [ "math.cos(query.life_time * -360.0 +  90.0) * 9.0", "2.0 + math.cos((1 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -360.0 +  90.0) * 9.0" ]
+				},
+				"upperbodyparts2" : {
+					"position" : [ "math.cos(query.life_time * -360.0 + 180.0) * 9.0", "2.0 + math.cos((2 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -360.0 + 180.0) * 9.0" ]
+				},
+				"upperbodyparts3" : {
+					"position" : [ "math.cos(query.life_time * -360.0 + 270.0) * 9.0", "2.0 + math.cos((3 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -360.0 + 270.0) * 9.0" ]
+				},
+				"upperbodyparts4" : {
+					"position" : [ "math.cos(query.life_time * 108.0 +  45.0) * 7.0", "-2.0 + math.cos((4 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * 108.0 +  45.0) * 7.0" ]
+				},
+				"upperbodyparts5" : {
+					"position" : [ "math.cos(query.life_time * 108.0 + 135.0) * 7.0", "-2.0 + math.cos((5 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * 108.0 + 135.0) * 7.0" ]
+				},
+				"upperbodyparts6" : {
+					"position" : [ "math.cos(query.life_time * 108.0 + 225.0) * 7.0", "-2.0 + math.cos((6 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * 108.0 + 225.0) * 7.0" ]
+				},
+				"upperbodyparts7" : {
+					"position" : [ "math.cos(query.life_time * 108.0 + 315.0) * 7.0", "-2.0 + math.cos((7 * 2 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * 108.0 + 315.0) * 7.0" ]
+				},
+				"upperbodyparts8" : {
+					"position" : [ "math.cos(query.life_time * -180.0 +  27.0) * 5.0", "-11.0 + math.cos((8 * 1.5 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -180.0 +  27.0) * 5.0" ]
+				},
+				"upperbodyparts9" : {
+					"position" : [ "math.cos(query.life_time * -180.0 + 117.0) * 5.0", "-11.0 + math.cos((9 * 1.5 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -180.0 + 117.0) * 5.0" ]
+				},
+				"upperbodyparts10" : {
+					"position" : [ "math.cos(query.life_time * -180.0 + 207.0) * 5.0", "-11.0 + math.cos((10 * 1.5 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -180.0 + 207.0) * 5.0" ]
+				},
+				"upperbodyparts11" : {
+					"position" : [ "math.cos(query.life_time * -180.0 + 297.0) * 5.0", "-11.0 + math.cos((11 * 1.5 + query.life_time * 20.0) * 14.32)", "math.sin(query.life_time * -180.0 + 297.0) * 5.0" ]
+				}
+			}
+		}
+  }
+}

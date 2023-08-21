@@ -1,0 +1,13 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.chicken": {
+      "geometry": "geometry.chicken",
+      "materials": [
+        { "*": "Material.chicken" },
+        { "leg*": "Material.chicken_legs" }
+      ],
+      "textures": [ "texture.chicken" ]
+    }
+  }
+}

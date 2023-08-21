@@ -1,0 +1,21 @@
+{
+    "format_version": "1.19.0",
+    "animation_controllers": {
+        "controller.animation.dummy_ride.has_rider": {
+            "initial_state": "has_rider",
+            "states": {
+                "no_rider": {
+                    "transitions": [
+                        { "has_rider": "q.has_rider" }
+                    ]
+                },
+                "has_rider":{
+                    "on_exit": ["@s e:instant_despawn"],
+                    "transitions": [
+                        { "no_rider": "!q.has_rider" }
+                    ]
+                }
+            }
+        }
+    }
+}

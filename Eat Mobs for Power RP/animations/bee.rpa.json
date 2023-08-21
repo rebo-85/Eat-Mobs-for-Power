@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.bee.wield.third_person": {
+		"animation.attachable.bee.third_person.hold": {
 			"loop": true,
 			"bones": {
 				"main": {
@@ -9,7 +9,7 @@
 				}
 			}
 		},
-		"animation.bee.wield.first_person": {
+		"animation.attachable.bee.first_person.hold": {
 			"loop": true,
 			"bones": {
 				"main": {
@@ -18,15 +18,20 @@
 				}
 			}
 		},
-		"animation.bee.eat.first_person": {
+		"animation.attachable.bee.first_person.using_item": {
 			"loop": true,
-			"animation_length": 0.25,
+			"animation_length": 0.22,
 			"bones": {
 				"main": {
-					"rotation": [15.93348, -17.91379, -124.15053],
+					"rotation": {
+						"0.0": [11.15878, 9.01796, -8.65878],
+						"0.1": [11.15878, 9.01796, -8.65878],
+						"0.21": [11.15878, 9.01796, -8.65878]
+					},
 					"position": {
-						"0.0": [-3, 22, -10],
-						"0.25": [2, 26, -10]
+						"0.0": [7, 7, -11],
+						"0.1": [4.25, 4.5, -13.5],
+						"0.21": [7, 7, -11]
 					}
 				}
 			}

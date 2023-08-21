@@ -1,0 +1,134 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.axolotl.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"a.axolotl.armor_setup",
+						"ac.axolotl.general",
+						// "ac.axolotl.move",
+						"ac.axolotl.sound.root",
+						{ "ac.axolotl.move" : "q.is_moving" },
+						{ "a.axolotl.look_at_target" : "!q.is_sleeping" },
+						{ "a.axolotl.riding" : "q.is_riding" },
+						{ "a.axolotl.sleeping" : "q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.axolotl.general": {
+			"initial_state": "default",
+			"states": {
+			  "default": {
+				"animations": [
+				  {
+					"a.axolotl.play_dead": "query.is_playing_dead"
+				  },
+				  {
+					"a.axolotl.swim_angle": "variable.moving && query.is_in_water && !query.is_on_ground"
+				  }
+				]
+			  }
+			}
+		  },
+		  "controller.animation.player.axolotl.move": {
+			"initial_state": "idle",
+			"states": {
+			  "idle": {
+				"animations": [
+				//   {
+				// 	"a.axolotl.idle_float": "query.is_in_water && !query.is_on_ground && !query.is_playing_dead"
+				//   },
+				//   {
+				// 	"a.axolotl.idle_floor": "!query.is_in_water"
+				//   },
+				  {
+					"a.axolotl.idle_floor_water": "query.is_in_water && query.is_on_ground"
+				  },
+				  "a.axolotl.look_at_target"
+				],
+				"transitions": [
+				  {
+					"moving": "variable.moving && !query.is_playing_dead"
+				  }
+				]
+			  },
+			  "moving": {
+				"animations": [
+				//   {
+				// 	"a.axolotl.swim": "query.is_in_water && !query.is_on_ground"
+				//   },
+				//   {
+				// 	"a.axolotl.walk_floor": "!query.is_in_water"
+				//   },
+				"a.axolotl.walk_floor",
+				//   {
+				// 	"a.axolotl.walk_floor_water": "query.is_in_water && query.is_on_ground"
+				//   },
+				  "a.axolotl.look_at_target"
+				],
+				"transitions": [
+				  {
+					"idle": "!variable.moving || query.is_playing_dead"
+				  }
+				]
+			  }
+			}
+		},
+		"controller.animation.player.axolotl.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.axolotl.sound.hurt",
+						"ac.axolotl.sound.death",
+						{ "a.axolotl.sound.ambient": "!q.is_in_water && !q.is_sleeping" },
+						{ "a.axolotl.sound.ambient_in_water": "q.is_in_water" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.axolotl.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.axolotl.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.axolotl.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.axolotl.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

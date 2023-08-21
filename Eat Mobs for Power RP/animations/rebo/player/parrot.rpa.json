@@ -1,0 +1,183 @@
+{
+	"format_version" : "1.8.0",
+  "animations": {
+	"animation.player.parrot.sound.hurt" : {
+		"loop" : false,
+		"animation_length": 0.4,
+		"sound_effects": {
+			"0.0": {
+				"effect": "sfx.parrot.hurt"
+			}
+		}
+	},
+	"animation.player.parrot.sound.death" : {
+		"loop" : false,
+		"animation_length": 0.4,
+		"sound_effects": {
+			"0.0": {
+				"effect": "sfx.parrot.death"
+			}
+		}
+	},
+	"animation.player.parrot.sound.ambient" : {
+		"loop" : true,
+		"animation_length": 15,
+		"sound_effects": {
+			"0.0": {
+				"effect": "sfx.parrot.ambient"
+			}
+		}
+	},
+    "animation.player.parrot.look_at_target" : {
+			"loop" : true,
+			"bones" : {
+				"parrot_head" : {
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+          			"position":[ 0, -2.9, 0 ],
+					"rotation" : [ "q.target_x_rotation - this", "q.target_y_rotation - this", 0.0 ]
+				}
+			}
+		},
+	"animation.player.parrot.armor_setup": {
+		"loop": true,
+		"bones": {
+			"head": {
+				"position": [ 0, -1600, -400 ],
+				"scale": [0.3, 0.4, 0.5]
+			},
+			"body": {
+				"scale": 0.01
+			},
+			"leftarm": {
+				"position": [ 200, -1600, -400 ]
+			},
+			"rightarm": {
+				"position": [ -200, -1600, -400 ]
+			},
+			"leftitem": {
+				"scale": 100
+			},
+			"rightitem": {
+				"scale": 100
+			},
+			"leftleg": {
+				"scale": 0.0
+			},
+			"rightleg": {
+				"scale": 0.0
+			}
+		}
+	},
+	"animation.player.parrot.riding" : {
+		"loop" : true,
+		"bones" : {
+			"parrot_body" : {
+				"position" : [ 0.0, "10.0 + q.is_ignited * 6.0", 0.0 ]
+			},
+			"root" : {
+				"position" : [ 0.0, "10.0 + q.is_ignited * 6.0", 0.0 ]
+			}
+		}
+	},
+	"animation.player.parrot.base" : {
+		"loop" : true,
+		"bones" : {
+			"parrot_body" : {
+				"position" : [ "-this", 0.0, 0.0 ],
+				"rotation" : [ "-this", 0.0, 0.0 ]
+			},
+			"feather" : {
+				"rotation" : [ "-this", 0.0, 0.0 ]
+			},
+			"parrot_head" : {
+				"position" : [ "-this", 3.0, -1.0 ],
+				"rotation" : [ 0.0, 0.0, "-this" ]
+			},
+			"tail" : {
+				"position" : [ "-this", 0.0, 0.0 ]
+			},
+			"wing0" : {
+				"position" : [ "1.5-this", 0.0, 0.0 ],
+				"rotation" : [ "-40.0-this", "-180.0-this", 0.0 ]
+			},
+			"wing1" : {
+				"position" : [ "-1.5-this", 0.0, 0.0 ],
+				"rotation" : [ "-40.0-this", "-180.0-this", 0.0 ]
+			}
+		}
+	},
+	"animation.player.parrot.dance" : {
+		"loop" : true,
+		"bones" : {
+			"parrot_body" : {
+				"position" : [ "v.dance.x-this", "v.dance.y", 0.0 ]
+			},
+			"parrot_head" : {
+				"rotation" : [ "-this", "-this", "v.dance.y*23.0 - this" ]
+			},
+			"tail" : {
+				"rotation" : [ "60.0 - this", 0.0, 0.0 ]
+			},
+			"wing0" : {
+				"rotation" : [ 0.0, 0.0, "-5.0 - v.parrot_wing_flap" ]
+			},
+			"wing1" : {
+				"rotation" : [ 0.0, 0.0, "5.0 + v.parrot_wing_flap" ]
+			}
+		}
+	},
+	"animation.player.parrot.flying" : {
+		"loop" : true,
+		"bones" : {
+			"leg0" : {
+				"rotation" : [ "math.cos(q.life_time * 38.17) * 80.0 * (q.modified_move_speed * 5)", 0.0, 0.0 ]
+			},
+			"leg1" : {
+				"rotation" : [ "math.cos(q.life_time * 38.17) * -80.0 * (q.modified_move_speed * 5)", 0.0, 0.0 ]
+			},
+			"tail" : {
+				"rotation" : [ "60.0 + math.cos(q.anim_time * 38.17) * 17.0 - this", 0.0, 0.0 ]
+			}
+		}
+	},
+	"animation.player.parrot.moving" : {
+		"loop" : true,
+		"bones" : {
+			"parrot_body" : {
+				"position" : [ 0.0, 0.0, 0.0 ]
+			},
+			"tail" : {
+				"rotation" : [ "60.0 + math.cos(q.anim_time * 38.17) * 17.0 - this", 0.0, 0.0 ]
+			},
+			"wing0" : {
+				"rotation" : [ 0.0, 0.0, "-5.0 - v.parrot_wing_flap * 57.3" ]
+			},
+			"wing1" : {
+				"rotation" : [ 0.0, 0.0, "5.0 + v.parrot_wing_flap * 57.3" ]
+			}
+		}
+	},
+	"animation.player.parrot.sitting" : {
+		"loop" : true,
+		"bones" : {
+			"parrot_body" : {
+				"position" : [ 0.0, -1.9, 0.0 ]
+			},
+			"tail" : {
+				"rotation" : [ "90.0 - this", 0.0, 0.0 ]
+			},
+			"wing0" : {
+				"rotation" : [ 0.0, 0.0, "-5.0-this" ]
+			},
+			"wing1" : {
+				"rotation" : [ 0.0, 0.0, "5.0-this" ]
+			}
+		}
+	},
+	"animation.player.parrot.standing" : {
+		"loop" : true
+	}
+  }
+}

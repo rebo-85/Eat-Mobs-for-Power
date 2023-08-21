@@ -1,0 +1,149 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+
+		"controller.animation.player.frog.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"a.frog.armor_setup",
+						"ac.frog.general",
+						"ac.frog.croaking",
+						"ac.frog.eat_mob",
+						"ac.frog.sound.root",
+						{ "a.frog.riding" : "q.is_riding" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.frog.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.frog.sound.hurt",
+						"ac.frog.sound.death",
+						{ "a.frog.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.frog.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.frog.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.frog.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.frog.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.frog.general": {
+			"initial_state": "on_land",
+			"states": {
+				"on_land": {
+					"animations": [
+						{ "a.frog.walk": "math.min(1.0, v.modified_move_speed * 10)" }
+					],
+					"transitions": [
+						{ "idling_water": "query.is_in_water && v.modified_move_speed < 0.15" },
+						{ "swimming": "query.is_in_water && v.modified_move_speed > 0.15" },
+						{ "jumping": "query.is_jumping"}
+					]
+				},
+				"jumping": {
+					"animations": [
+						{ "a.frog.jump": "!query.is_on_ground" }
+					],
+					"transitions": [
+						{ "on_land": "!query.is_in_water && query.is_on_ground" },
+						{ "idling_water": "query.is_in_water && v.modified_move_speed < 0.15" },
+						{ "swimming": "query.is_in_water && v.modified_move_speed > 0.15" }
+					]
+
+				},
+				"idling_water": {
+					"animations": [
+						"a.frog.idle_water"
+					],
+					"transitions": [
+						{ "on_land": "!query.is_in_water" },
+						{ "swimming": "query.is_in_water && v.modified_move_speed > 0.15" }
+					]
+				},
+				"swimming": {
+					"animations": [
+						{ "a.frog.swim": "math.min(1.0, v.modified_move_speed * 10)" }
+					],
+					"transitions": [
+						{ "on_land": "!query.is_in_water" },
+						{ "idling_water": "query.is_in_water && v.modified_move_speed < 0.15" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.frog.eat_mob": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"transitions": [
+						{ "eating": "query.is_eating_mob" }
+					]
+				},
+				"eating": {
+					"animations": [ "a.frog.tongue" ],
+					"transitions": [
+						{ "default": "!query.is_eating_mob" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.frog.croaking": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"transitions": [
+						{ "croaking": "v.croak" }
+					]
+				},
+				"croaking": {
+					"animations": [ "a.frog.croak" ],
+					"transitions": [
+						{ "default": "q.all_animations_finished" }
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.enderman": {
+      "geometry": "Geometry.enderman",
+      "materials": [ { "*": "Material.enderman" } ],
+      "textures": [ "Texture.enderman" ]
+    }
+  }
+}

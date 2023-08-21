@@ -1,0 +1,32 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.player.zombie.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.zombie.hurt"
+				}
+			}
+		},
+		"animation.player.zombie.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.zombie.death"
+				}
+			}
+		},
+		"animation.player.zombie.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.zombie.ambient"
+				}
+			}
+		}
+	}
+}

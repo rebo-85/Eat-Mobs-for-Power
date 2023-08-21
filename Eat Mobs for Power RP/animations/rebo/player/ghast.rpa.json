@@ -1,0 +1,121 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.player.ghast.sound.ambient" : {
+			"loop" : true,
+			"animation_length": 15,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.ghast.ambient"
+				}
+			}
+		},
+		"animation.player.ghast.sound.death" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.ghast.death"
+				}
+			}
+		},
+		"animation.player.ghast.sound.shoot" : {
+			"loop" : false,
+			"animation_length": 3.0,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.ghast.warn"
+				}
+			}
+		},
+		"animation.player.ghast.sound.hurt" : {
+			"loop" : false,
+			"animation_length": 0.4,
+			"sound_effects": {
+				"0.0": {
+					"effect": "sfx.ghast.hurt"
+				}
+			}
+		},
+		"animation.player.ghast.armor_setup" : {
+			"loop": true,
+			"bones": {
+				"body": {
+					"position": [ 0, -20, 2.1 ],
+					"scale": 0.01
+				},
+				"head" : {
+					"relative_to" : {
+						"rotation" : "entity"
+					},
+					"rotation" : [ "-this", "-this", 0.0 ],
+					"scale": 8.0
+				},
+				"leftarm": {
+					"position": [ 3000, -3000, 0 ]
+				},
+				"rightarm": {
+					"position": [ -3000, -3000, 0 ]
+				},
+				"leftitem": {
+					"scale": [ "(this / 0.01) * 8.0", "(this / 0.01) * 8.0", "(this / 0.01) * 8.0" ]
+				},
+				"rightitem": {
+					"scale": [ "(this / 0.01) * 8.0", "(this / 0.01) * 8.0", "(this / 0.01) * 8.0" ]
+				},
+				"leftleg": {
+					"scale": 0.0
+				},
+				"rightleg": {
+					"scale": 0.0
+				}
+			}
+		},
+		"animation.player.ghast.move" : {
+			"loop" : true,
+			"bones" : {
+				"tentacles_0" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 0) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_1" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 57) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_2" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 115) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_3" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 172) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_4" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 229) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_5" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 286) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_6" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 344) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_7" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 402) * 11.5 + 23", 0.0, 0.0 ]
+				},
+				"tentacles_8" : {
+					"rotation" : [ "math.sin(query.life_time * 360.0 + 458) * 11.5 + 23", 0.0, 0.0 ]
+				}
+			}
+		},
+		"animation.player.ghast.scale" : {
+			"loop" : true,
+			"bones" : {
+				"ghast_body" : {
+					"scale" : "q.is_in_ui ? 1.0 : 4.5"
+				},
+				"root" : {
+					"scale" : "q.is_in_ui ? 0.222 : 1.0"
+				},
+				"head" : {
+					"scale" : "q.is_in_ui ? 0.222 : 1.0"
+				}
+			}
+		}
+	}
+}

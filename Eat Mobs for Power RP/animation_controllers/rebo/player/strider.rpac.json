@@ -1,0 +1,72 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.strider.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						"a.strider.armor_setup",
+						"a.strider.look_at_target",
+						"a.strider.walk",
+						{ "a.strider.sleeping": "q.is_sleeping" },
+						"a.strider.bristle_flow",
+						"ac.strider.sound.root"
+					]
+				}
+			}
+		},
+		"controller.animation.player.strider.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.strider.sound.hurt",
+						"ac.strider.sound.death",
+						{ "a.strider.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.strider.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.strider.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.strider.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.strider.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

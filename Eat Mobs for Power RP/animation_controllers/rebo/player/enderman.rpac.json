@@ -1,0 +1,198 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.enderman.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						"a.enderman.armor_setup",
+						"a.enderman.arms_legs",
+						"a.enderman.attack.rotations",
+						"a.enderman.base_pose",
+						"a.enderman.base_pose",
+						"a.enderman.bob",
+						"a.enderman.move",
+						"ac.enderman.carrying",
+						{ "a.enderman.sleeping" : "q.is_sleeping" },
+						{ "a.enderman.swim" : "v.swim_amount > 0.0" },
+						{ "ac.enderman.look_at_target" : "!q.is_sleeping" },
+						"ac.enderman.scary_face",
+						"ac.enderman.sound.root",
+						{ "a.enderman.shield_block_main_hand" : "(q.blocking && !q.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:shield')) && q.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:shield')" },
+						{ "a.enderman.shield_block_off_hand" : "(q.blocking && q.is_item_name_any('slot.weapon.offhand', 0, 'minecraft:shield'))" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.enderman.sound.death",
+						"ac.enderman.sound.hurt",
+						"ac.enderman.sound.mad",
+						{ "a.enderman.sound.ambient": "!q.is_in_water && !q.is_sleeping && !q.is_sprinting" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.sound.mad" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "mad": "q.is_sprinting"}
+					]
+				},
+				"mad": {
+					"animations": [
+						"a.enderman.sound.mad"
+					],
+					"transitions": [
+						{"default": "!q.is_sprinting"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.enderman.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.enderman.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.enderman.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.look_at_target" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations" : [ "a.enderman.look_at_target_default" ],
+					"transitions" : [
+						{
+							"gliding" : "q.is_gliding"
+						},
+						{
+							"swimming" : "q.is_swimming"
+						}
+					]
+				},
+				"gliding" : {
+					"animations" : [ "a.enderman.look_at_target_gliding" ],
+					"transitions" : [
+						{
+							"swimming" : "q.is_swimming"
+						},
+						{
+							"default" : "!q.is_gliding"
+						}
+					]
+				},
+				"swimming" : {
+					"animations" : [ "a.enderman.look_at_target_swimming" ],
+					"transitions" : [
+						{
+							"gliding" : "q.is_gliding"
+						},
+						{
+							"default" : "!q.is_swimming"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.attack" : {
+			"initial_state" : "default",
+			"states" : {
+				"attacking" : {
+					"animations" : [ "a.enderman.attack.rotations" ],
+					"transitions" : [
+						{
+							"default" : "variable.attack_time < 0.0"
+						}
+					]
+				},
+				"default" : {
+					"transitions" : [
+						{
+							"attacking" : "variable.attack_time >= 0.0"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.carrying" : {
+			"initial_state" : "default",
+			"states" : {
+				"carry" : {
+					"animations" : [ "a.enderman.carrying" ],
+					"transitions" : [
+						{
+							"default" : "!q.is_carrying_block"
+						}
+					]
+				},
+				"default" : {
+					"transitions" : [
+						{
+							"carry" : "q.is_carrying_block"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.enderman.scary_face" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"transitions" : [
+						{
+							"scary" : "q.is_sprinting"
+						}
+					]
+				},
+				"scary" : {
+					"animations" : [ "a.enderman.scary_face" ],
+					"transitions" : [
+						{
+							"default" : "!q.is_sprinting"
+						}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,97 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.blaze.flame" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"transitions" : [
+						{
+							"flaming" : "q.is_charged"
+						}
+					]
+				},
+				"flaming" : {
+					"particle_effects" : [
+						{
+							"effect" : "p.blaze.charged_flames"
+						}
+					],
+					"transitions" : [
+						{
+							"default" : "!q.is_charged"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.blaze.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations": [
+						{ "a.blaze.sleeping" : "q.is_sleeping" },
+						{ "a.blaze.look_at_target" : "!q.is_sleeping" },
+						{ "a.blaze.swim" : "v.swim_amount > 0.0" },
+						"a.blaze.armor_setup",
+						"a.blaze.move",
+						"ac.blaze.flame",
+						"ac.blaze.sound.root"
+					]
+				}
+			}
+		},
+		"controller.animation.player.blaze.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.blaze.sound.hurt",
+						"ac.blaze.sound.death",
+						{ "a.blaze.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.blaze.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.blaze.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.blaze.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.blaze.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

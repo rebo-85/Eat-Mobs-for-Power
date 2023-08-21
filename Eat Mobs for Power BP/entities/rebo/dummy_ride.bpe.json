@@ -1,0 +1,934 @@
+{
+    "format_version": "1.18.30",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "inmine:dummy_ride",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            "animations": {
+                "ac.has_rider": "controller.animation.dummy_ride.has_rider"
+            },
+            "scripts": {
+                "animate": [
+                    "ac.has_rider"
+                ]
+            }
+        },
+        "components": {
+            "minecraft:type_family": { "family": [ "inmine", "dummy_ride"] },
+            
+            "minecraft:collision_box": { "width": 0.6, "height": 0.6 },
+            "minecraft:health": { "value": 10, "max": 10 },
+            "minecraft:attack": { "damage": 4 },
+            "minecraft:scale": { "value": 1.0 },
+
+            "minecraft:movement": { "value": 0.15 },
+            "minecraft:flying_speed": { "value": 0.15 },
+            "minecraft:underwater_movement": { "value": 0.15 },
+
+
+            "minecraft:loot": { "table": "loot_tables/empty.json" },
+            
+            "minecraft:is_hidden_when_invisible": {},
+            "minecraft:conditional_bandwidth_optimization": {},
+
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    { "cause": "all", "deals_damage": false }
+                ]
+            },
+            "minecraft:hurt_on_condition": {
+                "damage_conditions": [
+                    { "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true }, "cause": "lava", "damage_per_tick": 4 }
+                ]
+            },
+            "minecraft:environment_sensor": {
+                "triggers": [
+                    {
+                        "filters": {
+                            "all_of": [
+                                { "test": "has_tag", "subject": "self", "operator": "equals", "value": "example" }
+                            ]
+                        },
+                        "event": "e:example",
+                        "target": "self"
+                    }
+                ]
+            },
+            "minecraft:target_nearby_sensor": {
+                "must_see": true,
+                "inside_range": 1,
+                "outside_range": 5,
+                "on_inside_range": { "event": "e:target_on_inside_range", "target": "self" },
+                "on_outside_range": { "event": "e:target_on_outside_range", "target": "self"},
+                "on_vision_lost_inside_range": { "event": "e:on_vision_lost_inside_range", "target": "self"}
+            },
+            "minecraft:on_hurt": { "event": "e:on_hurt", "target": "self" },
+            "minecraft:on_hurt_by_player": { "event": "e:on_hurt_by_player", "target": "self" }
+        },
+        "component_groups": {
+            "cg:variant-0": {"minecraft:variant": { "value": 0 } },
+            "cg:variant-1": {"minecraft:variant": { "value": 1 } },
+            "cg:variant-2": {"minecraft:variant": { "value": 2 } },
+            "cg:variant-3": {"minecraft:variant": { "value": 3 } },
+            "cg:variant-4": {"minecraft:variant": { "value": 4 } },
+
+            "cg:mark_variant-0": {"minecraft:mark_variant": { "value": 0 } },
+            "cg:mark_variant-1": {"minecraft:mark_variant": { "value": 1 } },
+            "cg:mark_variant-2": {"minecraft:mark_variant": { "value": 2 } },
+            "cg:mark_variant-3": {"minecraft:mark_variant": { "value": 3 } },
+            "cg:mark_variant-4": {"minecraft:mark_variant": { "value": 4 } },
+
+            "cg:skin_id-0": {"minecraft:skin_id": { "value": 0 } },
+            "cg:skin_id-1": {"minecraft:skin_id": { "value": 1 } },
+            "cg:skin_id-2": {"minecraft:skin_id": { "value": 2 } },
+            "cg:skin_id-3": {"minecraft:skin_id": { "value": 3 } },
+            "cg:skin_id-4": {"minecraft:skin_id": { "value": 4 } },
+
+            "cg:color-0": {"minecraft:color": { "value": 0 } },
+            "cg:color-1": {"minecraft:color": { "value": 1 } },
+            "cg:color-2": {"minecraft:color": { "value": 2 } },
+            "cg:color-3": {"minecraft:color": { "value": 3 } },
+            "cg:color-4": {"minecraft:color": { "value": 4 } },
+
+            "cg:color2-0": {"minecraft:color2": {"value": 0} },
+            "cg:color2-1": {"minecraft:color2": {"value": 1} },
+            "cg:color2-2": {"minecraft:color2": {"value": 2} },
+            "cg:color2-3": {"minecraft:color2": {"value": 3} },
+            "cg:color2-4": {"minecraft:color2": {"value": 4} },
+
+            "cg:ignited": { "minecraft:is_ignited": {} },
+            "cg:sheared": { "minecraft:is_sheared": {} },
+            "cg:chested": { "minecraft:is_chested": {} },
+            "cg:stunned": { "minecraft:is_stunned": {} },
+            "cg:illager_captain": { "minecraft:is_illager_captain": {} },
+
+            "cg:boss_bar": {
+                "minecraft:boss": { "hud_range": 16, "name": "entity.inmine:dummy_ride.name", "should_darken_sky": false }
+            },
+            "cg:nameable":{
+                "minecraft:nameable": {
+                    "allow_name_tag_renaming": true,
+                    "always_show": false,
+                    "default_trigger": { "event": "e:named_default", "target": "self" },
+                    "name_actions": [
+                        {
+                            "name_filter": "sample_name",
+                            "on_named": {"event": "e:on_named", "target": "self"}
+                        }
+                    ]
+                }
+            },
+            "cg:leashable": {
+                "minecraft:leashable": {
+                    "on_leash": {
+                        "event": "e:on_least",
+                        "target": "self"
+                    },
+                    "on_unleash": {
+                        "event": "e:on_unleash",
+                        "target": "self"
+                    },
+                    "can_be_stolen": true,
+                    "hard_distance": 6,
+                    "max_distance": 10,
+                    "soft_distance": 4
+                }
+            },
+            "cg:interactable": {
+                "minecraft:interact": {
+                    "interactions": [
+                        {
+                            "interact_text": "action.interact.inmine:dummy_ride",
+                            "on_interact": {
+                                "filters": [],
+                                "event": "e:on_interact",
+                                "target": "self"
+                            }
+                        }
+                    ]
+                }
+            },
+
+            "cg:transform-dummy_ride2": {
+                "minecraft:transformation": {
+                    "add": {
+                        "component_groups": [
+                        ]
+                    },
+                    "delay":{},
+                    "begin_transform_sound": "",
+                    "drop_equipment": false,
+                    "drop_inventory": false,
+                    "into": "inmine:dummy_ride2",
+                    "keep_level": false,
+                    "keep_owner": false,
+                    "preserve_equipment": false,
+                    "transformation_sound": ""
+                }
+            },
+            "cg:undead": {
+                "minecraft:burns_in_daylight": {},
+                "minecraft:behavior.flee_sun": {
+                    "priority": 2,
+                    "speed_multiplier": 1.2
+                }
+            },
+            "cg:projectile": {
+                "minecraft:projectile": {
+                    "on_hit": {
+                        "definition_event": {
+                            "affect_projectile": true,
+                            "event_trigger": {
+                                "event": "e:on_hit"
+                            }
+                        },
+                        "impact_damage": {
+                          "damage": [ 1, 5 ],
+                          "knockback": true,
+                          "semi_random_diff_damage": false,
+                          "destroy_on_hit": true
+                        },
+                        "stick_in_ground": {
+                          "shake_time" : 0.35
+                        },
+                        "arrow_effect": {
+                        }
+                      },
+                      "hit_sound": "bow.hit",
+                      "power": 1.6,
+                      "gravity": 0.05,
+                      "uncertainty_base": 16,
+                      "uncertainty_multiplier": 4,
+                      "anchor": 1,
+                      "should_bounce": true,
+                      "offset": [ 0, -0.1, 0 ]
+                }
+            },
+            
+            "cg:physics": {
+                "minecraft:physics": {},
+                "minecraft:pushable": { "is_pushable": true, "is_pushable_by_piston": true }
+            },
+            "cg:knockback_resistance": {
+                "minecraft:knockback_resistance": { "value": 1 }
+            },
+
+            "cg:explode": {
+                "minecraft:explode": {
+                    "breaks_blocks": true,
+                    "causes_fire": false,
+                    "destroy_affected_by_griefing": false,
+                    "fire_affected_by_griefing": false,
+                    "fuse_lit": false,
+                    "max_resistance": 1000,
+                    "power": 3
+                }
+            },
+            "cg:mob": {
+                "minecraft:experience_reward": { "on_death": "query.last_hit_by_player ? Math.Random(10,20) : 0" },
+                "minecraft:breathable": { "total_supply": 15, "suffocate_time": 0 },
+                
+                "minecraft:balloonable": { "mass": 0.9 },
+
+                "minecraft:behavior.look_at_player": { "priority": 8, "look_distance": 6.0, "probability": 0.02 },
+                "minecraft:behavior.random_look_around": { "priority": 9 }
+            },
+            "cg:inanimate": {
+                
+            },
+            "cg:walk_animate": {
+                "minecraft:can_climb": {},
+                "minecraft:movement.basic": {},
+                "minecraft:jump.static": {},
+
+                "minecraft:navigation.walk": {
+                    "is_amphibious": false,
+                    "can_path_over_water": true,
+                    "avoid_water": true,
+                    "avoid_sun": false,
+                    "avoid_portals": true,
+                    "can_open_doors": false,
+                    "can_path_over_lava": false,
+                    "avoid_damage_blocks": true
+                },
+                "minecraft:behavior.follow_owner": {
+                    "priority": 2,
+                    "can_teleport": true,
+                    "speed_multiplier": 1.5,
+                    "start_distance": 10,
+                    "stop_distance": 2
+                },
+                "minecraft:behavior.random_stroll": {
+                    "priority": 7,
+                    "speed_multiplier": 0.8
+                }
+            },
+            "cg:walk_inanimate": {
+                "minecraft:can_climb": {},
+                "minecraft:underwater_movement": { "value": 0.1 },
+                "minecraft:movement.basic": {},
+                "minecraft:jump.static": {}
+            },
+            "cg:fly_animate": {
+                "minecraft:can_fly": {},
+                "minecraft:balloonable": {},
+                "minecraft:movement.fly": {},
+
+                "minecraft:navigation.fly": {
+                    "avoid_damage_blocks": true,
+                    "can_pass_doors": true,
+                    "can_jump": true,
+                    "can_path_from_air": true,
+                    "can_path_over_water": true
+                },
+                "minecraft:behavior.follow_owner": {
+                    "priority": 2,
+                    "can_teleport": true,
+                    "speed_multiplier": 4.0,
+                    "start_distance": 10,
+                    "stop_distance": 2
+                },
+                "minecraft:behavior.random_fly": {
+                  "priority": 7,
+                  "xz_dist": 15,
+                  "y_dist": 1,
+                  "y_offset": 0,
+                  "speed_multiplier": 4.0,
+                  "can_land_on_trees": true,
+                  "avoid_damage_blocks": true
+                }
+            },
+            "cg:fly_inanimate": {
+                "minecraft:can_fly": {},
+                "minecraft:balloonable": {},
+                "minecraft:movement.fly": {}
+            },
+            "cg:hover_animate": {
+                "minecraft:can_fly": {},
+                "minecraft:balloonable": {},
+                "minecraft:movement.hover": {},
+                
+                "minecraft:navigation.hover": {
+                    "avoid_damage_blocks": true,
+                    "can_pass_doors": true,
+                    "can_jump": true,
+                    "can_path_from_air": true,
+                    "can_path_over_water": true
+                },
+                "minecraft:behavior.follow_owner": {
+                    "priority": 2,
+                    "can_teleport": true,
+                    "speed_multiplier": 2.0,
+                    "start_distance": 10,
+                    "stop_distance": 2
+                },
+                "minecraft:behavior.random_hover": {
+                  "priority": 7,
+                  "hover_height": [2, 6],
+                  "xz_dist": 15,
+                  "y_dist": 1,
+                  "y_offset": 0,
+                  "speed_multiplier": 0.8
+                }
+            },
+            "cg:hover_inanimate": {
+                "minecraft:can_fly": {},
+                "minecraft:balloonable": {},
+                "minecraft:movement.hover": {}
+            },
+            "cg:swim_animate": {
+                "minecraft:balloonable": {},
+                "minecraft:movement.sway": {},
+
+                "minecraft:navigation.swim": {
+                    "avoid_damage_blocks": true,
+                    "can_path_from_air": false,
+                    "can_path_over_water": false
+                },
+                "minecraft:behavior.follow_owner": {
+                    "priority": 2,
+                    "can_teleport": false,
+                    "speed_multiplier": 2.0,
+                    "start_distance": 10,
+                    "stop_distance": 2
+                },
+                "minecraft:behavior.random_swim": {
+                  "priority": 7,
+                  "xz_dist": 15,
+                  "y_dist": 1,
+                  "speed_multiplier": 0.8
+                }
+            },
+
+            "cg:swim_inanimate": {
+                "minecraft:balloonable": {},
+                "minecraft:movement.sway": {}
+            },
+
+            "cg:tameable": {
+                "minecraft:tameable": {
+                    "probability": 0.05,
+                    "tame_items":[
+                        "minecraft:apple"
+                    ],
+                    "tame_event": {
+                        "event": "e:tamed",
+                        "target": "self"
+                    }
+                }
+            },
+            "cg:tamed": {
+                "minecraft:is_tamed": {},
+                "minecraft:sittable": {},
+                "minecraft:healable": {
+                    "force_use": false,
+                    "items": [
+                        { "item": "minecraft:apple", "heal_amount": 1 }
+                    ]
+                }
+            },
+            "cg:rideable": {
+                "minecraft:rideable": {
+                    "controlling_seat": 0,
+                    "crouching_skip_interact": true,
+                    "interact_text": "action.interact.ride",
+                    "pull_in_entities": false,
+                    "rider_can_interact": false,
+                    "seat_count": 1,
+                    "seats":{"position": [0.0, -0.5, 0.0]}
+          
+                }
+            },
+            "cg:ride_controllable": {
+                "minecraft:input_ground_controlled": {},
+
+                "minecraft:behavior.player_ride_tamed": { "priority": 0 }
+            },
+            "cg:passive": {
+                "minecraft:behavior.panic": { "priority": 3, "speed_multiplier": 1.25 }
+            },
+            "cg:neutral": {
+                "minecraft:behavior.owner_hurt_by_target": { "priority": 0 },
+                "minecraft:behavior.owner_hurt_target": { "priority": 1 },
+                "minecraft:behavior.hurt_by_target": {
+                    "priority": 5,
+                    "alert_same_type": false,
+                    "hurt_owner": false
+                }
+            },
+            "cg:hostile": {
+                "minecraft:behavior.owner_hurt_by_target": { "priority": 0 },
+                "minecraft:behavior.owner_hurt_target": { "priority": 1 },
+                "minecraft:behavior.nearest_attackable_target": {
+                    "priority": 4,
+                    "entity_types": [
+                        {
+                            "filters": {
+                                "any_of": [
+                                    { "test": "is_family", "subject": "other", "operator": "equals", "value": "player" },
+                                    { "test": "is_family", "subject": "other", "operator": "equals", "value": "iron_golem" },
+                                    { "test": "is_family", "subject": "other", "operator": "equals", "value": "snow_golem" }
+                                ]
+                            },
+                            "must_see": true,
+                            "max_dist": 16
+                        }
+                    ]
+                },
+                "minecraft:behavior.hurt_by_target": {
+                    "priority": 5,
+                    "alert_same_type": false,
+                    "hurt_owner": false
+                }
+            },
+            "cg:melee_attack": {
+                "minecraft:behavior.melee_attack": { 
+                    "priority": 3,
+                    "cooldown_time": 2,
+                    "reach_multiplier": 1 }
+            },
+            "cg:ranged_attack": {
+                "minecraft:shooter": {
+                    "def": "minecraft:arrow"
+                },
+                "minecraft:follow_range": { "value": 64, "max": 64 },
+                "minecraft:behavior.ranged_attack": {
+                    "priority": 3,
+                    "attack_radius": 15,
+                    "charge_shoot_trigger": 2,
+                    "charge_charged_trigger": 1
+                }
+            },
+            "cg:delayed_attack": {
+                "minecraft:behavior.delayed_attack": {
+                    "priority": 3,
+                    "attack_duration": 1,
+                    "hit_delay_pct": 1,
+                    "reach_multiplier": 1.0,
+                    "track_target": false
+                }
+            },
+            "cg:can-knockback_roar": {
+                "minecraft:ravager_blocked": {}
+            },
+            "cg:timer-knockback_roar": {
+                "minecraft:timer": {
+                    "time": 1,
+                    "looping": true,
+                    "time_down_event": { "event": "e:weight-knockback_roar", "target": "self" }
+                }
+            },
+            "cg:dash": {
+              "minecraft:behavior.knockback_roar": {
+                "priority": 0,
+                "duration": 0.1,
+                "attack_time": 0.1,
+                "knockback_damage": 0,
+                "knockback_horizontal_strength": 5,
+                "knockback_vertical_strength": 0,
+                "knockback_range": 5,
+                "knockback_filters": {
+                    "any_of": [
+                        {
+                            "all_of": [
+                                {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                            ]
+                        }
+                    ]
+                },
+                "damage_filters": {
+                    "any_of": [
+                        {
+                            "all_of": [
+                                {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                            ]
+                        }
+                    ]
+                },
+                "on_roar_end": { "event": "e:instant_despawn", "target": "self" },
+                "cooldown_time": 0.0
+              }
+            },
+            "cg:jump": {
+              "minecraft:behavior.knockback_roar": {
+                "priority": 0,
+                "duration": 0.1,
+                "attack_time": 0.1,
+                "knockback_damage": 0,
+                "knockback_horizontal_strength": 0,
+                "knockback_vertical_strength": 5,
+                "knockback_range": 5,
+                "knockback_filters": {
+                    "any_of": [
+                        {
+                            "all_of": [
+                                {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                            ]
+                        }
+                    ]
+                },
+                "damage_filters": {
+                    "any_of": [
+                        {
+                            "all_of": [
+                                {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                            ]
+                        }
+                    ]
+                },
+                "on_roar_end": { "event": "e:instant_despawn", "target": "self" },
+                "cooldown_time": 0.0
+              }
+            },
+            "cg:knockback_roar": {
+                "minecraft:behavior.knockback_roar": {
+                    "priority": 1,
+                    "duration": 0.1,
+                    "attack_time": 0.1,
+                    "knockback_damage": 6,
+                    "knockback_horizontal_strength": 5,
+                    "knockback_vertical_strength": 5,
+                    "knockback_range": 5,
+                    "knockback_filters": {
+                        "any_of": [
+                            {
+                                "all_of": [
+                                    {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                                ]
+                            }
+                        ]
+                    },
+                    "damage_filters": {
+                        "any_of": [
+                            {
+                                "all_of": [
+                                    {"test": "has_tag", "subject": "other", "operator": "equals", "value": "self"}
+                                ]
+                            }
+                        ]
+                    },
+                    "on_roar_end": { "event": "e:remove-knockback_roar", "target": "self" },
+                    "cooldown_time": 0.0
+                  }
+            },
+            "cg:baby": {
+                "minecraft:is_baby": {},
+                "minecraft:scale": {"value": 0.5},
+                "minecraft:ageable": {
+                    "duration": 1200,
+                    "feed_items": ["potato" ],
+                    "grow_up": {"event": "e:adult", "target": "self"}
+                },
+        
+                "minecraft:behavior.follow_parent": {
+                    "priority": 6,
+                    "speed_multiplier": 1.1
+                }
+            },
+            "cg:adult": {
+                "minecraft:experience_reward": {
+                    "on_bred": "Math.Random(1,7)",
+                    "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
+                },
+                "minecraft:loot": {
+                    "table": "loot_tables/empty.json"
+                },
+                "minecraft:behavior.breed": {
+                    "priority": 4,
+                    "speed_multiplier": 1.0
+                },
+                "minecraft:breedable": {
+                    "require_tame": false,
+                    "breed_items": [ "carrot", "beetroot", "potato" ],
+                    "breeds_with": {
+                        "mate_type": "inmine:dummy_ride",
+                        "baby_type": "inmine:dummy_ride",
+                        "breed_event": {
+                            "event": "e:baby",
+                            "target": "baby"
+                        }
+                    }
+                }
+            },
+            "cg:instant_despawn": {
+                "minecraft:instant_despawn": {
+                    "remove_child_entities": false
+                }
+            },
+            "cg:despawn": {
+                "minecraft:despawn": {
+                    "despawn_from_distance": {}
+                }
+            },
+            "cg:persistent": {
+                "minecraft:persistent": {}
+            }
+        },
+        "events": {
+            "e:on_spawn": {
+                "sequence": [
+                    {
+                        "trigger": "e:preset-land_ride_inanimate"
+                    }
+                ]
+            },
+
+            "minecraft:entity_spawned": {"trigger": "e:on_spawn"},
+
+            "e:preset-walk_hostile_melee": {
+                "sequence": [
+                   { "trigger": "e:add-physics" },
+                   { "trigger": "e:mob" },
+                   { "trigger": "e:walk_animate" },
+                   { "trigger": "e:melee_attack" },
+                   { "trigger": "e:add-nameable" },
+                   { "trigger": "e:despawn" },
+                   { "trigger": "e:hostile" }
+                ]
+            },
+
+            "e:preset-hover_passive": {
+                "sequence": [
+                   { "trigger": "e:add-physics" },
+                   { "trigger": "e:mob" },
+                   { "trigger": "e:hover_animate" },
+                   { "trigger": "e:add-nameable" },
+                   { "trigger": "e:add-leashable" },
+                   { "trigger": "e:despawn" },
+                   { "trigger": "e:passive" }
+                ]
+            },
+
+            "e:preset-land_ride_inanimate": {
+                "sequence": [
+                   { "trigger": "e:add-physics" },
+                   { "trigger": "e:walk_inanimate"},
+                   { "trigger": "e:add-rideable"},
+                   { "trigger": "e:persistent"},
+                   { "trigger": "e:add-ride_controllable"}
+                   
+                ]
+            },
+
+            "e:preset-projectile": {
+                "sequence": [
+                   { "trigger": "e:add-physics" },
+                   { "trigger": "e:add-projectile"}
+                   
+                ]
+            },
+
+
+            "e:transform-dummy_ride2": {
+                "sequence": [
+                   { "add": { "component_groups": [ "cg:transform-dummy_ride2" ] } }
+                   
+                ]
+            },
+
+            "e:target_on_inside_range": {
+                "sequence": [
+                    {
+                        "filters": { "test": "has_component","subject": "self", "operator": "equals", "value": "minecraft:ravager_blocked" },
+                        "trigger": "e:add-timer-knockback_roar"
+                    }
+                ]
+            },
+            "e:target_on_outside_range": {
+                "sequence": [
+                    {
+                        "filters": { "test": "has_component","subject": "self", "operator": "equals", "value": "minecraft:ravager_blocked" },
+                        "trigger": "e:remove-timer-knockback_roar"
+                    }
+                ]
+            },
+            "e:on_vision_lost_inside_range": {
+                "sequence": [
+                    {
+                        "filters": { "test": "has_component","subject": "self", "operator": "equals", "value": "minecraft:ravager_blocked" },
+                        "trigger": "e:remove-timer-knockback_roar"
+                    }
+                ]
+            },
+            "e:on_hurt": {
+                "sequence": [
+                    {
+                        "filters": {
+                            "all_of": [
+                                { "test": "has_damage", "subject": "self", "operator": "not", "value": "projectile" },
+                                { "test": "has_tag","subject": "self", "operator": "equals", "value": "can_knockback_roar" }
+                            ]
+                        },
+                        "trigger": "e:weight-knockback_roar"
+                    }
+                ]
+            },
+            "e:on_hurt_by_player": {
+                "sequence": [
+                    {
+                        "filters": {
+                            "all_of": [
+                                { "test": "has_damage", "subject": "self", "operator": "not", "value": "projectile" },
+                                { "test": "has_tag","subject": "self", "operator": "equals", "value": "can_knockback_roar" }
+                            ]
+                        },
+                        "trigger": "e:weight-knockback_roar"
+                    }
+                ]
+            },
+            "e:on_hit": {
+                "sequence": [
+                    { "trigger": "e:add_ignited"}
+                ]
+            },
+            "e:on_interact": {
+                "sequence": [
+                    { "trigger": "e:add_ignited"}
+                ]
+            },
+            "e:on_name": {
+                "sequence": [
+                    { "trigger": "e:add_ignited"}
+                ]
+            },
+            "e:on_leash": {
+                "sequence": [
+                    { "trigger": "e:add_ignited"}
+                ]
+            },
+            
+            "e:add-physics": { "add": { "component_groups": [ "cg:physics" ] } },
+            "e:remove-physics": { "remove": { "component_groups": [ "cg:physics" ] } },
+            "e:add-knockback_resistance": { "add": { "component_groups": [ "cg:knockback_resistance" ] } },
+            "e:remove-knockback_resistance": { "remove": { "component_groups": [ "cg:knockback_resistance" ] } },
+            "e:add-ignited": { "add": { "component_groups": [ "cg:ignited" ] } },
+            "e:remove-ignited": { "remove": { "component_groups": [ "cg:ignited" ] } },
+            "e:add-sheared": { "add": { "component_groups": [ "cg:sheared" ] } },
+            "e:remove-sheared": { "remove": { "component_groups": [ "cg:sheared" ] } },
+            "e:add-chested": { "add": { "component_groups": [ "cg:chested" ] } },
+            "e:remove-chested": { "remove": { "component_groups": [ "cg:chested" ] } },
+            "e:add-stunned": { "add": { "component_groups": [ "cg:stunned" ] } },
+            "e:remove-stunned": { "remove": { "component_groups": [ "cg:stunned" ] } },
+            "e:add-illager_captain": { "add": { "component_groups": [ "cg:illager_captain" ] } },
+            "e:remove-illager_captain": { "remove": { "component_groups": [ "cg:illager_captain" ] } },
+
+
+            "e:variant-0": { "add": { "component_groups": [ "cg:variant-0" ] } },
+            "e:variant-1": { "add": { "component_groups": [ "cg:variant-1" ] } },
+            "e:variant-2": { "add": { "component_groups": [ "cg:variant-2" ] } },
+            "e:variant-3": { "add": { "component_groups": [ "cg:variant-3" ] } },
+            "e:variant-4": { "add": { "component_groups": [ "cg:variant-4" ] } },
+            
+            "e:mark_variant-0": { "add": { "component_groups": [ "cg:mark_variant-0" ] } },
+            "e:mark_variant-1": { "add": { "component_groups": [ "cg:mark_variant-1" ] } },
+            "e:mark_variant-2": { "add": { "component_groups": [ "cg:mark_variant-2" ] } },
+            "e:mark_variant-3": { "add": { "component_groups": [ "cg:mark_variant-3" ] } },
+            "e:mark_variant-4": { "add": { "component_groups": [ "cg:mark_variant-4" ] } },
+            
+            "e:skin_id-0": { "add": { "component_groups": [ "cg:skin_id-0" ] } },
+            "e:skin_id-1": { "add": { "component_groups": [ "cg:skin_id-1" ] } },
+            "e:skin_id-2": { "add": { "component_groups": [ "cg:skin_id-2" ] } },
+            "e:skin_id-3": { "add": { "component_groups": [ "cg:skin_id-3" ] } },
+            "e:skin_id-4": { "add": { "component_groups": [ "cg:skin_id-4" ] } },
+            
+            "e:color-0": { "add": { "component_groups": [ "cg:color-0" ] } },
+            "e:color-1": { "add": { "component_groups": [ "cg:color-1" ] } },
+            "e:color-2": { "add": { "component_groups": [ "cg:color-2" ] } },
+            "e:color-3": { "add": { "component_groups": [ "cg:color-3" ] } },
+            "e:color-4": { "add": { "component_groups": [ "cg:color-4" ] } },
+            
+            "e:color2-0": { "add": { "component_groups": [ "cg:color2-0" ] } },
+            "e:color2-1": { "add": { "component_groups": [ "cg:color2-1" ] } },
+            "e:color2-2": { "add": { "component_groups": [ "cg:color2-2" ] } },
+            "e:color2-3": { "add": { "component_groups": [ "cg:color2-3" ] } },
+            "e:color2-4": { "add": { "component_groups": [ "cg:color2-4" ] } },
+
+
+
+            "e:add-boss_bar": { "add": { "component_groups": [ "cg:boss_bar" ] } },
+            "e:remove-boss_bar": { "remove": { "component_groups": [ "cg:boss_bar" ] } },
+
+            "e:add-nameable": { "add": { "component_groups": [ "cg:nameable" ] } },
+            "e:remove-nameable": { "remove": { "component_groups": [ "cg:nameable" ] } },
+            "e:add-leashable": { "add": { "component_groups": [ "cg:leashable" ] } },
+            "e:remove-leashable": { "remove": { "component_groups": [ "cg:leashable" ] } },
+
+            "e:add-projectile": { "add": { "component_groups": [ "cg:projectile" ] } },
+            "e:remove-projectile": { "remove": { "component_groups": [ "cg:projectile" ] } },
+
+
+            "e:add-undead": { "add": { "component_groups": [ "cg:undead" ] } },
+            "e:remove-undead": { "remove": { "component_groups": [ "cg:undead" ] } },
+
+            "e:add-explode": { "add": { "component_groups": [ "cg:explode" ] } },
+            "e:remove-explode": { "remove": { "component_groups": [ "cg:explode" ] } },
+            
+
+            "e:can-knockback_roar": { "add": { "component_groups": [ "cg:can-knockback_roar" ] } },
+            "e:add-timer-knockback_roar": { "add": { "component_groups": [ "cg:timer-knockback_roar" ] } },
+            "e:remove-timer-knockback_roar": { "remove": { "component_groups": [ "cg:timer-knockback_roar" ] } },
+            "e:add-knockback_roar": { "add": { "component_groups": [ "cg:knockback_roar" ] } },
+            "e:remove-knockback_roar": { "remove": { "component_groups": [ "cg:knockback_roar", "cg:timer-knockback_roar"] } },
+            "e:weight-knockback_roar": { "randomize": [{"weight": 1, "trigger": "e:add-knockback_roar"}, {"weight": 9}] },
+
+
+            "e:add-rideable": { "add": { "component_groups": [ "cg:rideable" ] } },
+            "e:remove-rideable": { "remove": { "component_groups": [ "cg:rideable" ] } },
+            "e:add-ride_controllable": { "add": { "component_groups": [ "cg:ride_controllable" ] } },
+            "e:remove-ride_controllable": { "remove": { "component_groups": [ "cg:ride_controllable" ] } },
+
+
+
+
+
+            "e:mob": { 
+                "add": { "component_groups": [ "cg:mob" ] },
+                "remove": { "component_groups": [ "cg:inanimate" ] } 
+            },
+            "e:inanimate": { 
+                "add": { "component_groups": [ "cg:inanimate" ] },
+                "remove": { "component_groups": [ "cg:mob" ] } 
+            },
+
+            "e:walk_animate": { 
+                "add": { "component_groups": [ "cg:walk_animate" ] },
+                "remove": { "component_groups": [ "cg:fly_animate", "cg:hover_animate", "cg:swim_animate" ] } 
+            },
+            "e:fly_animate": { 
+                "add": { "component_groups": [ "cg:fly_animate" ] },
+                "remove": { "component_groups": [ "cg:walk_animate", "cg:hover_animate", "cg:swim_animate" ] } 
+            },
+            "e:hover_animate": { 
+                "add": { "component_groups": [ "cg:hover_animate" ] },
+                "remove": { "component_groups": [ "cg:walk_animate", "cg:fly_animate", "cg:swim_animate" ] } 
+            },
+            "e:swim_animate": { 
+                "add": { "component_groups": [ "cg:swim_animate" ] },
+                "remove": { "component_groups": [ "cg:walk_animate", "cg:fly_animate", "cg:hover_animate" ] } 
+            },
+            "e:walk_inanimate": { 
+                "add": { "component_groups": [ "cg:walk_inanimate" ] },
+                "remove": { "component_groups": [ "cg:fly_inanimate", "cg:hover_inanimate", "cg:swim_inanimate" ] } 
+            },
+            "e:fly_inanimate": { 
+                "add": { "component_groups": [ "cg:fly_inanimate" ] },
+                "remove": { "component_groups": [ "cg:walk_inanimate", "cg:hover_inanimate", "cg:swim_inanimate" ] } 
+            },
+            "e:hover_inanimate": { 
+                "add": { "component_groups": [ "cg:hover_inanimate" ] },
+                "remove": { "component_groups": [ "cg:walk_inanimate", "cg:fly_inanimate", "cg:swim_inanimate" ] } 
+            },
+            "e:swim_inanimate": { 
+                "add": { "component_groups": [ "cg:swim_inanimate" ] },
+                "remove": { "component_groups": [ "cg:walk_inanimate", "cg:fly_inanimate", "cg:hover_inanimate" ] } 
+            },
+
+            "e:passive": { 
+                "add": { "component_groups": [ "cg:passive" ] },
+                "remove": { "component_groups": [ "cg:neutral", "cg:hostile" ] } 
+            }, 
+            "e:neutral": { 
+                "add": { "component_groups": [ "cg:neutral" ] },
+                "remove": { "component_groups": [ "cg:passive", "cg:hostile" ] } 
+            }, 
+            "e:hostile": { 
+                "add": { "component_groups": [ "cg:hostile" ] },
+                "remove": { "component_groups": [ "cg:passive", "cg:neutral" ] } 
+            },
+
+            "e:melee_attack": { 
+                "add": { "component_groups": [ "cg:melee_attack" ] },
+                "remove": { "component_groups": [ "cg:ranged_attack", "cg:delayed_attack" ] } 
+            },
+            "e:ranged_attack": { 
+                "add": { "component_groups": [ "cg:ranged_attack" ] },
+                "remove": { "component_groups": [ "cg:melee_attack", "cg:delayed_attack" ] } 
+            },
+            "e:delayed_attack": { 
+                "add": { "component_groups": [ "cg:delayed_attack" ] },
+                "remove": { "component_groups": [ "cg:melee_attack", "cg:ranged_attack" ] } 
+            },
+
+            "e:baby": { 
+                "add": { "component_groups": [ "cg:baby" ] },
+                "remove": { "component_groups": [ "cg:adult" ] } 
+            },
+            "e:adult": { 
+                "add": { "component_groups": [ "cg:adult" ] },
+                "remove": { "component_groups": [ "cg:baby" ] } 
+            },
+      
+            "e:instant_despawn": { "add": { "component_groups": [ "cg:instant_despawn" ] } },
+            "e:despawn": { 
+                "add": { "component_groups": [ "cg:despawn" ] },
+                "remove": { "component_groups": [ "cg:persistent" ] } 
+            },
+            "e:persistent": { 
+                "add": { "component_groups": [ "cg:persistent" ] },
+                "remove": { "component_groups": [ "cg:despawn" ] } 
+            }
+        }
+    }
+}

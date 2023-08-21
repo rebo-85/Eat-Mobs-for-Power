@@ -5,48 +5,296 @@
       "identifier": "minecraft:player",
       "is_spawnable": false,
       "is_summonable": false,
-      "is_experimental": false
-    },
-
-    "component_groups": {
-      "minecraft:add_bad_omen": {
-        "minecraft:spell_effects": {
-          "add_effects": [
-            {
-              "effect": "bad_omen",
-              "duration": 6000,
-              "visible": false,
-              "display_on_screen_animation": true
-            }
-          ]
-        },
-        "minecraft:timer": {
-          "time": [ 0.0, 0.0 ],
-          "looping": false,
-          "time_down_event": {
-            "event": "minecraft:clear_add_bad_omen",
-            "target": "self"
-          }
-        }
+      "is_experimental": false,
+      "animations": {
+        "ac.item.bee": "controller.animation.player.item.bee",
+        "ac.jump": "controller.animation.player.jump",
+        
+        "stunned": "controller.animation.player.stunned",
+        "is_riding": "controller.animation.player.is_riding",
+        "in_water": "controller.animation.player.in_water",
+        "jumping": "controller.animation.player.jumping",
+        "on_attack": "controller.animation.player.on_attack",
+        "on_ground": "controller.animation.player.on_ground",
+        "on_jump": "controller.animation.player.on_jump",
+        "sneaking": "controller.animation.player.sneaking",
+        "sprinting": "controller.animation.player.sprinting",
+        "variant": "controller.animation.player.variant"
       },
-      "minecraft:clear_bad_omen_spell_effect": {
-        "minecraft:spell_effects": {
-        }
-      },
-      "minecraft:raid_trigger": {
-        "minecraft:raid_trigger": {
-          "triggered_event": {
-            "event": "minecraft:remove_raid_trigger",
-            "target": "self"
-          }
-        },
-        "minecraft:spell_effects": {
-          "remove_effects": "bad_omen"
-        }
+      "scripts": {
+        "animate": [
+          "ac.item.bee",
+          "ac.jump",
+          "stunned",
+          "is_riding",
+          "in_water",
+          "jumping",
+          "on_attack",
+          "on_ground",
+          "on_jump",
+          "sneaking",
+          "sprinting",
+          "variant"
+        ]
       }
     },
 
+
     "components": {
+
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_family",
+                  "subject": "self",
+                  "value": "player"
+                },
+                {
+                  "test": "has_mob_effect",
+                  "subject": "self",
+                  "value": "bad_omen"
+                },
+                {
+                  "test": "is_in_village",
+                  "subject": "self",
+                  "value": true
+                }
+              ]
+            },
+            "event": "minecraft:trigger_raid"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_family",
+                  "subject": "self",
+                  "value": "creeper"
+                },
+                {
+                    "test": "has_component",
+                    "subject": "self",
+                    "operator": "not",
+                    "value": "minecraft:is_sheared"
+                },
+                {
+                  "test": "has_component",
+                  "subject": "self",
+                  "operator": "not",
+                  "value": "minecraft:is_illager_captain"
+                },
+                {
+                  "test": "is_sneaking",
+                  "subject": "self",
+                  "value": true
+                }
+              ]
+            },
+            "event": "e:add-exploding"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_family",
+                  "subject": "self",
+                  "value": "creeper"
+                },
+                {
+                  "test": "is_sneaking",
+                  "subject": "self",
+                  "value": false
+                }
+              ]
+            },
+            "event": "e:remove-exploding"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "self", "value": "strider" },
+                {
+                  "any_of": [
+                    { "test": "in_lava", "subject": "self", "value": true },
+                    { "test": "has_biome_tag", "subject": "self", "operator": "equals", "value": "nether" }
+                  ]
+                }
+              ]
+            },
+            "event": "e:add-ignited"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "self", "value": "strider" },
+                { "test": "in_lava", "subject": "self", "value": false },
+                { "test": "has_biome_tag", "subject": "self", "operator": "not", "value": "nether" }
+              ]
+            },
+            "event": "e:remove-ignited"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "subject": "self",
+                  "operator": "equals",
+                  "value": "nether"
+                }
+              ]
+            },
+            "event": "e:add-stunned"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_biome_tag",
+                  "subject": "self",
+                  "operator": "not",
+                  "value": "nether"
+                }
+              ]
+            },
+            "event": "e:remove-stunned"
+          }
+        ]
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "lightning",
+            "on_damage": {
+              "filters": [
+                { "test": "is_family", "subject": "self", "value": "axolotl" }
+              ]
+            },
+            "deals_damage": true,
+            "damage_multiplier": 2000.0
+          },
+          {
+            "on_damage": {
+              "filters": [
+                {
+                  "any_of": [
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "blaze" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "cat" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "chicken" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "enderman" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "ghast" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "parrot" }
+                  ]
+                }
+              ]
+            },
+            "cause": "fall",
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": [
+                {
+                  "none_of": [
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "blaze" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "cat" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "chicken" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "enderman" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "ghast" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "parrot" }
+                  ]
+                }
+              ]
+            },
+            "cause": "fall",
+            "deals_damage": true
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                    { "test": "is_family", "subject": "self", "value": "fox" },
+                    { "test": "is_block", "subject": "block", "value": "minecraft:sweet_berry_bush" }
+                ]
+              }
+            },
+            "deals_damage": false
+          },
+          {
+            "cause": "suffocation",
+            "on_damage": {
+              "filters": {
+                "any_of": [
+                  [
+                    { "test": "is_family", "subject": "self", "value": "axolotl" },
+                    { "test": "is_family", "subject": "self", "value": "cat" },
+                    { "test": "is_family", "subject": "self", "value": "chicken" },
+                    { "test": "is_family", "subject": "self", "value": "fox" },
+                    { "test": "is_family", "subject": "self", "value": "frog" },
+                    { "test": "is_family", "subject": "self", "value": "parrot" },
+                    { "test": "is_family", "subject": "self", "value": "pig" }
+                  ]
+                ]
+              }
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "all_of": [
+                { 
+                  "any_of": [
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "axolotl" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "cat" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "chicken" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "creeper" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "enderman" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "fox" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "frog" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "panda" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "parrot" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "pig" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "piglin_brute" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "player" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "salmon" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "skeleton" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "spider" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "zombie" }
+                  ]
+                },
+                { "test": "in_lava", "subject": "self", "operator": "equals", "value": true }
+              ]
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          },
+          {
+            "filters": {
+              "all_of": [
+                { 
+                  "any_of": [
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "blaze" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "enderman" },
+                    { "test": "is_family", "subject": "self", "operator": "equals", "value": "strider" }
+                  ]
+                },
+                { "test": "in_contact_with_water", "operator": "==", "value": true }
+              ]
+            },
+            "cause": "drowning",
+            "damage_per_tick": 1
+          }
+        ]
+      },
+
+
       "minecraft:experience_reward": {
         "on_death": "Math.Min(query.player_level * 7, 100)"
       },
@@ -66,15 +314,6 @@
       },
       "minecraft:movement": {
         "value": 0.1
-      },
-      "minecraft:hurt_on_condition": {
-        "damage_conditions": [
-          {
-            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
-            "cause": "lava",
-            "damage_per_tick": 4
-          }
-        ]
       },
       "minecraft:attack": {
         "damage": 1
@@ -148,57 +387,987 @@
       },
       "minecraft:conditional_bandwidth_optimization": {
       },
-      "minecraft:block_climber": {},
-      "minecraft:environment_sensor": {
-        "triggers": {
+      "minecraft:block_climber": {}
+    },
+
+    "component_groups": {
+      "cg:spawn_entity-bee_flight": {
+				"minecraft:spawn_entity": {
+					"entities": [
+						{
+							"max_wait_time": 0,
+							"min_wait_time": 0,
+							"single_use": true,
+							"spawn_entity": "rebo:spawner",
+              "spawn_event": "e:add-transformation-bee_flight"
+						}
+					]
+				}
+			},
+
+      
+      "cg:damage_sensor-player": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "cause": "all",
+              "deals_damage": true
+            }
+          ]
+        }
+      },
+     
+      "cg:axolotl-lucy": { "minecraft:skin_id": { "value": 0 } },
+      "cg:axolotl-cyan": { "minecraft:skin_id": { "value": 1 } },
+      "cg:axolotl-gold": { "minecraft:skin_id": { "value": 2 } },
+      "cg:axolotl-wild": { "minecraft:skin_id": { "value": 3 } },
+      "cg:axolotl-blue": { "minecraft:skin_id": { "value": 4 } },
+
+      "cg:cat-white": { "minecraft:skin_id": { "value": 0 } },
+      "cg:cat-tuxedo": { "minecraft:skin_id": { "value": 1 } },
+      "cg:cat-red": { "minecraft:skin_id": { "value": 2 } },
+      "cg:cat-siamese": { "minecraft:skin_id": { "value": 3 } },
+      "cg:cat-british": { "minecraft:skin_id": { "value": 4 } },
+      "cg:cat-calico": { "minecraft:skin_id": { "value": 5 } },
+      "cg:cat-persian": { "minecraft:skin_id": { "value": 6 } },
+      "cg:cat-ragdoll": { "minecraft:skin_id": { "value": 7 } },
+      "cg:cat-tabby": { "minecraft:skin_id": { "value": 8 } },
+      "cg:cat-black": { "minecraft:skin_id": { "value": 9 } },
+      "cg:cat-jellie": { "minecraft:skin_id": { "value": 10 } },
+
+      "cg:frog-temperate": { "minecraft:skin_id": { "value": 0 } },
+      "cg:frog-cold": { "minecraft:skin_id": { "value": 1 } },
+      "cg:frog-warm": { "minecraft:skin_id": { "value": 2 } },
+
+      "cg:panda-default": { "minecraft:skin_id": { "value": 0 }},
+      "cg:panda-lazy": { "minecraft:skin_id": { "value": 1 }},
+      "cg:panda-worried": { "minecraft:skin_id": { "value": 2 }},
+      "cg:panda-playful": { "minecraft:skin_id": { "value": 3 }},
+      "cg:panda-brown": { "minecraft:skin_id": { "value": 4 }},
+      "cg:panda-weak": { "minecraft:skin_id": { "value": 5 }},
+      "cg:panda-sneezing": { "minecraft:skin_id": { "value": 6 }},
+      "cg:panda-aggressive": { "minecraft:skin_id": { "value": 7 }},
+
+      "cg:parrot-red": { "minecraft:skin_id": { "value": 0 } },
+      "cg:parrot-blue": { "minecraft:skin_id": { "value": 1 } },
+      "cg:parrot-green": { "minecraft:skin_id": { "value": 2 } },
+      "cg:parrot-cyan": { "minecraft:skin_id": { "value": 3 } },
+      "cg:parrot-silver": { "minecraft:skin_id": { "value": 4 } },
+
+      "cg:lava_movement-default": { 
+        "minecraft:lava_movement": { "value": 0.04 }
+      },
+      "cg:underwater_movement-default": { 
+        "minecraft:underwater_movement": { "value": 0.04 }
+      },
+      "cg:player": { 
+        "minecraft:variant": { "value": 0 },
+        
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:type_family": {
+          "family": [ "player" ]
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 1.5
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:underwater_movement": {
+          "value": 0.04
+        },
+
+        "minecraft:attack": {
+          "damage": 1
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": -1,
+          "inhale_time": 3.75,
+          "generates_bubbles": false
+        }
+      },
+      "cg:axolotl": {
+        "minecraft:variant": { "value": 1 },
+        "minecraft:type_family": {
+          "family": [
+            "axolotl",
+            "mob"
+          ]
+        },
+        "minecraft:collision_box": {
+          "width": 0.75,
+          "height": 0.42
+        },
+        
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_water": true,
+          "breathes_air": true,
+          "generates_bubbles": false
+        },
+        "minecraft:health": {
+          "value": 14
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:underwater_movement": { "value": 0.12 },
+        "minecraft:attack": {
+          "damage": 2
+        },
+        "minecraft:combat_regeneration": {}
+      },
+      "cg:blaze": { 
+        "minecraft:variant": { "value": 2 },
+        "minecraft:collision_box": {
+          "width": 0.5,
+          "height": 1.8
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_water": true,
+          "breathes_air": true,
+          "generates_bubbles": false
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:lava_movement": {
+          "value": 0.12
+        },
+        "minecraft:can_fly": {
+        },
+        "minecraft:flying_speed": {
+          "value": 1.0
+        },
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+     
+        "minecraft:type_family": {
+          "family": [ "blaze", "monster", "mob" ]
+        }
+      },
+      "cg:cat": {
+        "minecraft:variant": {"value": 3},
+       
+        "minecraft:attack_damage": {
+          "value": 4
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:attack": {
+          "damage": 4
+        },
+        "minecraft:type_family": {
+          "family": [ "cat", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 0.7
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:navigation.generic": {},
+        "minecraft:conditional_bandwidth_optimization": {
+        }
+      },
+      "cg:chicken": { 
+        "minecraft:variant": { "value": 4 },
+
+        
+        "minecraft:type_family": {
+          "family": [ "chicken", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 0.8
+        },
+        "minecraft:health": {
+          "value": 4,
+          "max": 4
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:balloonable": {
+          "mass": 0.5
+        },
+        "minecraft:spawn_entity": {
+          "entities": {
+            "min_wait_time": 100,
+            "max_wait_time": 200,
+            "spawn_sound": "plop",
+            "spawn_item": "egg",
+            "filters": {
+              "test": "rider_count", "subject": "self", "operator": "==", "value": 0
+            }
+          }
+        }
+       },
+      "cg:creeper": { 
+        "minecraft:variant": { "value": 5 },
+
+       
+        "minecraft:type_family": {
+          "family": [ "creeper", "monster", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 1.8
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:attack": {
+          "damage": 3
+        }
+      },
+      "cg:enderman": { 
+        "minecraft:variant": { "value": 6 },
+        "minecraft:type_family": {
+          "family": [ "enderman", "monster", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:health": {
+          "value": 40,
+          "max": 40
+        },
+        "minecraft:attack": {
+          "damage": 7
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 2.9
+        }
+      },
+      "cg:fox": { 
+        "minecraft:variant": { "value": 7 },
+        
+        "minecraft:type_family": {
+          "family": [ "fox", "lightweight", "mob" ]
+        },
+        "minecraft:breathable": {
+          "totalSupply": 15,
+          "suffocateTime": 0
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 0.7
+        },
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:attack": {
+          "damage": 2
+        }
+      }, 
+      "cg:frog": { 
+        "minecraft:variant": { "value": 8 },
+
+        "minecraft:type_family": {
+          "family": [ "frog", "mob" ]
+        },
+        "minecraft:collision_box": {
+          "width": 0.5,
+          "height": 0.55
+        },
+        
+        "minecraft:leashable": {
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_water": true,
+          "breathes_air": true,
+          "generates_bubbles": false
+        },
+        "minecraft:health": {
+          "value": 10
+        },
+        "minecraft:underwater_movement": { "value": 0.12 },
+        "minecraft:movement": {
+          "value": 0.12
+        }
+      },
+      "cg:ghast": { 
+        "minecraft:variant": { "value": 9 },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:health": {
+          "value": 10,
+          "max": 10
+        },
+        "minecraft:collision_box": {
+          "width": 4.02,
+          "height": 4
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:lava_movement": {
+          "value": 0.12
+        },
+        "minecraft:can_fly": {
+        },
+        "minecraft:type_family": {
+          "family": [ "ghast", "monster", "mob" ]
+        }
+      },
+      "cg:panda": { 
+        "minecraft:variant": { "value": 10 },
+
+        "minecraft:type_family": {
+          "family": [ "panda" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:scale": {
+          "value": 1.0
+        },
+        "minecraft:collision_box": {
+          "width": 1.7,
+          "height": 1.5
+        },
+        "minecraft:nameable": {
+        },
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:water_movement": {
+          "drag_factor": 0.98
+        },
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "family_types": [
+            "zombie"
+          ],
+          "seats": {
+            "position": [ 0.0, 1.105, 0.0 ]
+          }
+        }
+      },
+      "cg:parrot": { 
+        "minecraft:variant": { "value": 11 },
+        "minecraft:type_family": {
+          "family": [ "parrot", "mob" ]
+        },
+
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:collision_box": {
+          "width": 0.5,
+          "height": 1
+        },
+        "minecraft:health": {
+          "value": 6,
+          "max": 6
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:can_fly": {
+        },
+        "minecraft:game_event_movement_tracking": {
+          "emit_flap": true
+        },
+        "minecraft:healable": {
+          "force_use": true,
           "filters": {
-            "all_of": [
-              {
-                "test": "has_mob_effect",
-                "subject": "self",
-                "value": "bad_omen"
-              },
-              {
-                "test": "is_in_village",
-                "subject": "self",
-                "value": true
-              }
-            ]
+            "test": "is_riding",
+            "operator": "!=",
+            "value": true
           },
-          "event": "minecraft:trigger_raid"
+          "items": [
+            {
+              "item": "cookie",
+              "heal_amount": 0,
+              "effects": [
+                {
+                  "name": "fatal_poison",
+                  "chance": 1.0,
+                  "duration": 1000,
+                  "amplifier": 0
+                }
+              ]
+            }
+          ]
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:balloonable": {
+        }
+      },
+      "cg:pig": { 
+        "minecraft:variant": { "value": 12 },
+        "minecraft:type_family": {
+          "family": [ "pig", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:health": {
+          "value": 10,
+          "max": 10
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:collision_box": {
+          "width": 0.9,
+          "height": 0.9
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        }
+      },
+      "cg:piglin_brute": { 
+        "minecraft:variant": { "value": 13 },
+
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 1.9
+        },
+        "minecraft:type_family": {
+          "family": [
+            "piglin",
+            "adult_piglin",
+            "piglin_brute",
+            "monster"
+          ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:health": {
+          "value": 50,
+          "max": 50
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        }
+      },
+      "cg:salmon": { 
+        "minecraft:variant": { "value": 14 },
+
+        "minecraft:type_family": {
+          "family": [ "salmon", "fish" ]
+        },
+        "minecraft:collision_box": {
+          "width": 0.5,
+          "height": 0.5
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_air": false,
+          "breathes_water": true
+        },
+        "minecraft:health": {
+          "value": 3,
+          "max": 3
+        },
+        "minecraft:underwater_movement": { "value": 0.12 },
+        "minecraft:movement": {
+          "value": 0.12
+        }
+      },
+      "cg:skeleton": { 
+        "minecraft:variant": { "value": 15 },
+
+        
+        "minecraft:collision_box": {
+          "width": 0.6,
+          "height": 1.9
+        },
+        "minecraft:type_family": {
+          "family": [ "skeleton", "undead", "monster", "mob" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_water": true
+        },
+
+        "minecraft:burns_in_daylight": {
+        },
+
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        }
+      },
+      "cg:spider": { 
+        "minecraft:variant": { "value": 16 },
+        "minecraft:type_family": {
+          "family": [ "spider", "monster", "mob", "arthropod" ]
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0
+        },
+        "minecraft:collision_box": {
+          "width": 1.4,
+          "height": 0.9
+        },
+        "minecraft:health": {
+          "value": 16,
+          "max": 16
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:attack": {
+          "damage": 2
+        }
+      },
+      "cg:strider": { 
+        "minecraft:variant": { "value": 17 },
+        "minecraft:type_family": {
+          "family": [ "strider", "mob" ]
+        },
+        "minecraft:collision_box": {
+          "width": 0.9,
+          "height": 1.7
+        },
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_water": true,
+          "breathes_air": true,
+          "generates_bubbles": false
+        },
+        "minecraft:leashable": {
+          "soft_distance": 4.0,
+          "hard_distance": 6.0,
+          "max_distance": 10.0
+        },
+        "minecraft:balloonable": {
+        },
+        "minecraft:movement": {
+          "value": 0.12
+        },
+        "minecraft:lava_movement": {
+          "value": 0.12
+        },
+        "minecraft:movement.basic": {
+        },
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:nameable": {
+        }
+      },
+      "cg:zombie": {
+         "minecraft:variant": { "value": 18 },
+         "minecraft:type_family": {
+           "family": [ "zombie", "undead", "monster", "mob" ]
+         },
+         "minecraft:equip_item": {
+         },
+         "minecraft:collision_box": {
+           "width": 0.6,
+           "height": 1.9
+         },
+         "minecraft:burns_in_daylight": {
+         },
+         "minecraft:health": {
+           "value": 20,
+           "max": 20
+         },
+         "minecraft:breathable": {
+           "total_supply": 15,
+           "suffocate_time": 0,
+           "breathes_air": true,
+           "breathes_water": true
+         },
+         "minecraft:attack": {
+           "damage": 3
+         }
+      },
+      
+      
+
+      "cg:exploding": {
+        "minecraft:is_illager_captain": {},
+        "minecraft:timer": {
+          "time": 1.5,
+          "looping": false,
+          "time_down_event": { "event": "e:explode", "target": "self" }
+        }
+      },
+      "cg:explode": {
+        "minecraft:is_sheared": {},
+        "minecraft:spawn_entity": {
+          "entities":{ "min_wait_time": 0, "max_wait_time": 0, "single_use": true, "spawn_entity": "inmine:explosion","spawn_sound": "jump", "spawn_event": "e:explosion" }
+        }
+      },
+
+      "cg:ignited": { "minecraft:is_ignited": {} },
+      "cg:stunned": { "minecraft:is_stunned": {} },
+      "cg:baby": { "minecraft:is_baby": {} },
+
+      
+
+
+      "cg:shoot-fireball": { "minecraft:spawn_entity": { "entities": [ { "min_wait_time": 0, "max_wait_time": 0, "single_use": true, "spawn_sound": "jump", "spawn_entity": "inmine:fireball" } ] } },
+      "cg:shoot-small_fireball": { "minecraft:spawn_entity": { "entities": [ { "min_wait_time": 0, "max_wait_time": 0, "single_use": true, "spawn_sound": "jump", "spawn_entity": "inmine:small_fireball" } ] } },
+      "cg:shoot-tp_dummy": { "minecraft:spawn_entity": { "entities": [ { "min_wait_time": 0, "max_wait_time": 0, "single_use": true, "spawn_sound": "jump", "spawn_entity": "inmine:tp_dummy" } ] } },
+
+
+
+      "minecraft:add_bad_omen": {
+        "minecraft:spell_effects": {
+          "add_effects": [
+            {
+              "effect": "bad_omen",
+              "duration": 6000,
+              "visible": false,
+              "display_on_screen_animation": true
+            }
+          ]
+        },
+        "minecraft:timer": {
+          "time": [ 0.0, 0.0 ],
+          "looping": false,
+          "time_down_event": {
+            "event": "minecraft:clear_add_bad_omen",
+            "target": "self"
+          }
+        }
+      },
+      "minecraft:clear_bad_omen_spell_effect": {
+        "minecraft:spell_effects": {
+        }
+      },
+      "minecraft:raid_trigger": {
+        "minecraft:raid_trigger": {
+          "triggered_event": {
+            "event": "minecraft:remove_raid_trigger",
+            "target": "self"
+          }
+        },
+        "minecraft:spell_effects": {
+          "remove_effects": "bad_omen"
         }
       }
     },
-
     "events": {
-      "minecraft:gain_bad_omen": {
+      "e:add-spawn_entity-bee_flight": {
         "add": {
-          "component_groups": [
-            "minecraft:add_bad_omen"
-          ]
+          "component_groups": ["cg:spawn_entity-bee_flight"]
         }
+      },
+      "e:axolotl-random_skin": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 1, "add": { "component_groups": [ "cg:axolotl-lucy" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:axolotl-cyan" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:axolotl-gold" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:axolotl-wild" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:axolotl-blue" ] } }
+            ]
+          }
+        ]
+      },
+      "e:cat-random_skin": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-white" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-tuxedo" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-red" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-siamese" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-british" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-calico" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-persian" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-ragdoll" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-tabby" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-black" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:cat-jellie" ] } }
+            ]
+          }
+        ]
+      },
+      "e:frog-random_skin": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 1, "add": { "component_groups": [ "cg:frog-temperate" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:frog-cold" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:frog-warm" ] } }
+            ]
+          }
+        ]
+      },
+      "e:panda-random_skin": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-default" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-lazy" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-worried" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-playful" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-brown" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-weak" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-sneezing" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:panda-aggressive" ] } }
+            ]
+          }
+        ]
+      },
+      "e:parrot-random_skin": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 1, "add": { "component_groups": [ "cg:parrot-red" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:parrot-blue" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:parrot-green" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:parrot-cyan" ] } },
+              { "weight": 1, "add": { "component_groups": [ "cg:parrot-silver" ] } }
+            ]
+          }
+        ]
+      },
+      "e:refresh_morph": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [
+                "cg:player",
+                "cg:axolotl",
+                "cg:blaze",
+                "cg:cat",
+                "cg:creeper",
+                "cg:chicken",
+                "cg:enderman",
+                "cg:fox",
+                "cg:frog",
+                "cg:ghast",
+                "cg:panda",
+                "cg:parrot",
+                "cg:pig",
+                "cg:piglin_brute",
+                "cg:salmon",
+                "cg:skeleton",
+                "cg:strider",
+                "cg:spider",
+                "cg:zombie",
+
+                "cg:ignited",
+                "cg:exploding",
+                "cg:baby",
+                "cg:stunned"
+              ]
+            }
+          },
+          { "add": { "component_groups": [ "cg:underwater_movement-default", "cg:lava_movement-default" ] }}
+        ]
+      },
+    
+
+      "e:player": { "add": { "component_groups": [ "cg:player" ] } },
+      "e:axolotl": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:axolotl" ] }},
+          {"trigger": "e:axolotl-random_skin"}
+        ]
+      },
+      "e:blaze": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:blaze" ] }}
+        ]
+      },
+      "e:cat": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:cat" ] }},
+          {"trigger": "e:cat-random_skin"}
+        ]
+      },
+      "e:chicken": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:chicken" ] }}
+        ]
+      },
+      "e:creeper": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:creeper" ] }}
+        ]
+      },
+      "e:enderman": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:enderman" ] }}
+        ]
+      },
+      "e:fox": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:fox" ] }}
+        ]
+      },
+      "e:frog": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:frog" ] }},
+          {"trigger": "e:frog-random_skin"}
+        ]
+      },
+      "e:ghast": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:ghast" ] }}
+        ]
+      },
+      "e:panda": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:panda" ] }},
+          {"trigger": "e:panda-random_skin"}
+        ]
+      },
+      "e:parrot": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:parrot" ] }},
+          {"trigger": "e:parrot-random_skin"}
+        ]
+      },
+      "e:pig": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:pig" ] }}
+        ]
+      },
+      "e:piglin_brute": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:piglin_brute" ] }}
+        ]
+      },
+      "e:salmon": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:salmon" ] }}
+        ]
+      },
+      "e:skeleton": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:skeleton" ] }}
+        ]
+      },
+      "e:spider": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:spider" ] }}
+        ]
+      },
+      "e:strider": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:strider" ] }}
+        ]
+      },
+      "e:zombie": {
+        "sequence": [
+          {"add": { "component_groups": [ "cg:zombie" ] }}
+        ]
+      },
+
+      "e:add-exploding": {"add": { "component_groups": [ "cg:exploding" ] }},
+      "e:remove-exploding": {"remove": { "component_groups": [ "cg:exploding", "cg:explode" ] }},
+      "e:explode": {
+        "sequence": [
+          { "add": { "component_groups": [ "cg:explode" ] }},
+          { "remove": { "component_groups": [ "cg:exploding" ] }}
+        ]
+      },
+
+      "e:add-ignited": {"add": { "component_groups": [ "cg:ignited" ] }},
+      "e:remove-ignited": {"remove": { "component_groups": [ "cg:ignited" ] }},
+
+      "e:add-stunned": {"add": { "component_groups": [ "cg:stunned" ] }},
+      "e:remove-stunned": {"remove": { "component_groups": [ "cg:stunned" ] }},
+      "e:add-baby": {"add": { "component_groups": [ "cg:baby" ] }},
+      "e:remove-baby": {"remove": { "component_groups": [ "cg:baby" ] }},
+
+      "e:shoot-fireball": {"add": { "component_groups": [ "cg:shoot-fireball" ] }},
+      "e:shoot-small_fireball": {"add": { "component_groups": [ "cg:shoot-small_fireball" ] }},
+      "e:shoot-tp_dummy": {"add": { "component_groups": [ "cg:shoot-tp_dummy" ] }},
+
+      "minecraft:gain_bad_omen": {
+        "add": { "component_groups": ["minecraft:add_bad_omen"] }
       },
       "minecraft:clear_add_bad_omen": {
-        "remove": {
-          "component_groups": [
-            "minecraft:add_bad_omen"
-          ]
-        },
-        "add": {
-          "component_groups": [
-            "minecraft:clear_bad_omen_spell_effect"
-          ]
-        }
+        "remove": { "component_groups": ["minecraft:add_bad_omen"] },
+        "add": { "component_groups": ["minecraft:clear_bad_omen_spell_effect"] }
       },
       "minecraft:trigger_raid": {
-        "add": {
-          "component_groups": [ "minecraft:raid_trigger" ]
-        }
+        "add": { "component_groups": ["minecraft:raid_trigger"] }
       },
       "minecraft:remove_raid_trigger": {
-        "remove": {
-          "component_groups": [ "minecraft:raid_trigger" ]
-        }
+        "remove": { "component_groups": ["minecraft:raid_trigger"] }
       }
     }
   }

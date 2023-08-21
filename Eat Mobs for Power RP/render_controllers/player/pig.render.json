@@ -1,0 +1,15 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.pig": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.pig", "Texture.pig_saddled" ]
+        }
+      },
+      "geometry": "Geometry.pig",
+      "materials": [ { "*": "Material.pig" } ],
+      "textures": [ "Array.skins[query.is_saddled]" ]
+    }
+  }
+}

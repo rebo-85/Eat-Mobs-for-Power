@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.creeper": {
+      "geometry": "Geometry.creeper",
+      "materials": [ { "*": "Material.creeper" } ],
+      "textures": [ "Texture.creeper" ],
+      "overlay_color": {
+          "r": "((v.flash == 0.0) || (q.swelling_dir < 0.0)) ? this : 1.0",
+          "g": "((v.flash == 0.0) || (q.swelling_dir < 0.0)) ? this : 1.0",
+          "b": "((v.flash == 0.0) || (q.swelling_dir < 0.0)) ? this : 1.0",
+          "a": "((v.flash == 0.0) || (q.swelling_dir < 0.0)) ? this : 1.0"
+      }
+    },
+    "controller.render.player.creeper_charged": {
+      "geometry": "Geometry.creeper_charged",
+      "part_visibility": [
+        { "*": "q.is_powered" }
+      ],
+      "materials": [ { "*": "Material.creeper_charged" } ],
+      "textures": [ "Texture.creeper_charged" ],
+      "overlay_color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+      },
+      "uv_anim": {
+          "offset": [ "(q.is_powered) ? (Math.floor(q.life_time * 20.0) + q.frame_alpha) * 0.01 : 0.0", 
+                      "(q.is_powered) ? (Math.floor(q.life_time * 20.0) + q.frame_alpha) * 0.01 : 0.0" ],
+          "scale": [ 1.0, 1.0 ]
+      },
+      "light_color_multiplier": 0.5,
+      "ignore_lighting" : true
+    }
+  }
+}

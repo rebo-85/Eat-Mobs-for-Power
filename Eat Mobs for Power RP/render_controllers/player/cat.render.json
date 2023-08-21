@@ -1,0 +1,27 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.player.cat": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.cat_white_tame",
+            "Texture.cat_black_tame",
+            "Texture.cat_red_tame",
+            "Texture.cat_siamese_tame",
+            "Texture.cat_british_tame",
+            "Texture.cat_calico_tame",
+            "Texture.cat_persian_tame",
+            "Texture.cat_ragdoll_tame",
+            "Texture.cat_tabby_tame",
+            "Texture.cat_all_black_tame",
+            "Texture.cat_jellie_tame"
+          ]
+        }
+      },
+      "geometry": "Geometry.cat",
+      "materials": [ { "*": "Material.cat" } ],
+      "textures": [ "Array.skins[q.skin_id]" ]
+    }
+  }
+}

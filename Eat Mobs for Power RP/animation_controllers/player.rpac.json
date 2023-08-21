@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.attachable.root": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "first_person": "c.is_first_person" },
+            { "third_person": "!c.is_first_person" }
+        ]
+        },
+        "first_person": {
+          "animations": [
+            "a.first_person.hold",
+            { "a.first_person.using_item": "q.is_using_item" }
+          ],
+          "transitions": [{ "third_person": "!c.is_first_person" }]
+        },
+        "third_person": {
+          "animations": [
+            "a.third_person.hold"
+          ],
+          "transitions": [{ "first_person": "c.is_first_person" }]
+        }
+      }
+    }
+  }
+}

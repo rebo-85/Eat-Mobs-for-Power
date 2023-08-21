@@ -1,0 +1,92 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.salmon.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"a.salmon.armor_setup",
+						"ac.salmon.general",
+						"ac.salmon.sound.root",
+						{ "a.salmon.riding" : "q.is_riding" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.salmon.general" : {
+			"initial_state" : "flopping",
+			"states" : {
+				"flopping" : {
+					// "animations" : [ "a.salmon.flop" ],
+					"animations" : [ "a.salmon.swim" ],
+					"transitions" : [
+						{
+							"swimming" : "query.is_in_water || query.is_levitating"
+						}
+					]
+				},
+				"swimming" : {
+					"animations" : [ "a.salmon.swim" ],
+					"transitions" : [
+						{
+							"flopping" : "!query.is_in_water && !query.is_levitating"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.player.salmon.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.salmon.sound.hurt",
+						"ac.salmon.sound.death",
+						{ "a.salmon.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.salmon.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.salmon.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.salmon.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.salmon.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,1 @@
+function rebo/set_gamerules

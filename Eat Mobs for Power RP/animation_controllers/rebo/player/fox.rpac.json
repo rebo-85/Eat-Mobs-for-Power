@@ -1,0 +1,190 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.player.fox.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"a.fox.armor_setup",
+						"a.fox.setup",
+						"ac.fox.move",
+						"ac.fox.sound.root",
+						{ "a.fox.baby_transform": "query.is_baby" },
+						{ "a.fox.riding" : "q.is_riding" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.fox.sound.root" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"animations": [
+						"ac.fox.sound.hurt",
+						"ac.fox.sound.death",
+						{ "a.fox.sound.sleep": "q.is_sleeping" },
+						{ "a.fox.sound.ambient": "!q.is_in_water && !q.is_sleeping" }
+					]
+				}
+			}
+		},
+		"controller.animation.player.fox.sound.hurt" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"on_entry": [
+						"v.health = q.health;"
+					],
+					"transitions": [
+						{ "hurt": "v.health > q.health"}
+					]
+				},
+				"hurt": {
+					"animations": [
+						"a.fox.sound.hurt"
+					],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					]
+				}
+			}
+		},
+		
+		"controller.animation.player.fox.sound.death" : {
+			"initial_state" : "default",
+			"states" : {
+				"default": {
+					"transitions": [
+						{ "death": "!q.is_alive"}
+					]
+				},
+				"death": {
+					"animations": [
+						"a.fox.sound.death"
+					],
+					"transitions": [
+						{"default": "q.is_alive"}
+					]
+				}
+			}
+		},
+		"controller.animation.player.fox.move" : {
+			"initial_state" : "default",
+			"states" : {
+				"crouch" : {
+					"animations" : [
+						"a.fox.look_at_target",
+						"a.fox.crouch",
+						{
+							"a.fox.walk" : "v.modified_move_speed"
+						}
+					],
+					"blend_transition" : 0.4,
+					"transitions" : [
+						{
+							"default" : "!query.is_stalking && !query.is_interested"
+						},
+						{
+							"wiggle" : "query.is_interested"
+						}
+					]
+				},
+				"default" : {
+					"animations" : [
+						"a.fox.look_at_target",
+						{
+							"a.fox.walk" : "v.modified_move_speed"
+						}
+					],
+					"blend_transition" : 0.1,
+					"transitions" : [
+						{
+							"crouch" : "query.is_stalking"
+						},
+						{
+							"sleep" : "query.is_sleeping"
+						},
+						// {
+						// 	"stuck" : "query.is_stunned"
+						// },
+						{
+							"sit" : "query.is_riding"
+						}
+					]
+				},
+				"pounce" : {
+					"animations" : [
+						"a.fox.look_at_target",
+						"a.fox.pounce",
+						{
+							"a.fox.walk" : "v.modified_move_speed"
+						}
+					],
+					"blend_transition": 2.0,
+					"transitions": [
+						{
+							"default" : "query.is_on_ground"
+						}
+					]
+				},
+				"sit" : {
+					"animations": [
+						// "a.fox.sit",
+						"a.fox.look_at_target"
+					],
+					"blend_transition" : 0.2,
+					"transitions" : [
+						{
+							"default" : "!query.is_riding"
+						}
+					]
+				},
+				"sleep" : {
+					"animations" : [ "a.fox.sleep" ],
+					"blend_transition" : 0.2,
+					"transitions" : [
+						{
+							"default" : "!query.is_sleeping"
+						}
+					]
+				},
+				// "stuck" : {
+				// 	"animations" : [
+				// 		"a.fox.stuck",
+				// 		{
+				// 			"a.fox.walk" : "math.cos(query.life_time * 20.0 * 53.7)"
+				// 		}
+				// 	],
+				// 	"blend_transition" : 0.2,
+				// 	"transitions" : [
+				// 		{
+				// 			"default" : "!query.is_stunned"
+				// 		}
+				// 	]
+				// },
+				"wiggle" : {
+					"animations" : [
+						"a.fox.look_at_target",
+						"a.fox.wiggle",
+						{
+							"a.fox.walk" : "v.modified_move_speed"
+						}
+					],
+					"blend_transition" : 0.2,
+					"transitions" : [
+						{
+							"default": "!query.has_target && query.is_on_ground"
+						},
+						{
+							"crouch" : "query.is_on_ground && !query.is_interested && query.is_stalking"
+						},
+						{
+							"pounce" : "!query.is_on_ground"
+						}
+					]
+				}
+			}
+		}
+	}
+}
